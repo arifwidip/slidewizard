@@ -1,0 +1,28 @@
+{
+  "name": "Default",
+  "sources": ["posts", "twitter", "dribbble", "flickr", "feed", "instagram"],
+  "version": "1.0",
+  "description": "Default SlideWizard Themes",
+  "sizes": {
+    "small": {
+      "label": "Small",
+      "width": 450,
+      "height": 280
+    },
+    "medium": {
+      "label": "Medium",
+      "width": 600,
+      "height": 375
+    },
+    "large": {
+      "label": "Large",
+      "width": 800,
+      "height": 500
+    },
+    "custom": {
+      "label": "Custom",
+      "width": 600,
+      "height": 600
+    }
+  }
+}

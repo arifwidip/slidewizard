@@ -1,0 +1,4 @@
+*** SlideWizard Changelog ***
+
+2012.01.25 - Version 1.0.0
+ * First release!
