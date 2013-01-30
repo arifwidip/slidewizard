@@ -1,0 +1,80 @@
+/* ===================================================================
+  ** SLIDEWIZARD BASE CSS **
+=================================================================== */
+
+/* Typography
+------------------------------------------------------------------- */
+.slidewizard-wrapper {
+  color: #333;
+  font-size: 14px;
+  line-height: 20px;
+  overflow: hidden;
+  position: relative;
+  font-family: sans-serif;
+  margin-bottom: 20px;
+}
+.slidewizard-wrapper p {
+  margin: 0 0 10px;
+  line-height: 20px;
+}
+.slidewizard-wrapper a {
+  color: #09c;
+  text-decoration: none;
+}
+.slidewizard-wrapper a:hover {
+  /*color: #006080;*/
+  text-decoration: underline;
+}
+.slidewizard-wrapper h1,
+.slidewizard-wrapper h2,
+.slidewizard-wrapper h3,
+.slidewizard-wrapper h4,
+.slidewizard-wrapper h5,
+.slidewizard-wrapper h6 {
+  margin: 10px 0;
+  font-family: inherit;
+  font-weight: bold;
+  line-height: 20px;
+  color: inherit;
+  text-rendering: optimizelegibility;
+}
+.slidewizard-wrapper .slidewizard-slide-item {
+  position: relative;
+}
+.slidewizard-wrapper .slide-title {
+  font-weight: bold;
+}
+
+/* Navigation
+------------------------------------------------------------------- */
+.slidewizard-wrapper .slidewizard-controls-next:hover,
+.slidewizard-wrapper .slidewizard-controls-prev:hover {
+  text-decoration: none;
+}
+
+
+/* Preview Iframe Styles
+------------------------------------------------------------------- */
+.overlay-loader {
+  z-index: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  background: #fafafa url("../images/ajax-loader.gif") no-repeat center;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  opacity: 0;
+  -webkit-transition: opacity 0.5s ease;
+     -moz-transition: opacity 0.5s ease;
+      -ms-transition: opacity 0.5s ease;
+       -o-transition: opacity 0.5s ease;
+          transition: opacity 0.5s ease;
+}
+.overlay-loader.loading {
+  z-index: 99999;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: alpha(opacity=100);
+  opacity: 1;
+}
