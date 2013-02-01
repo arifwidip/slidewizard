@@ -59,7 +59,7 @@ class Slides {
     add_action( 'admin_print_styles-toplevel_page_' .SLIDEWIZARD_PLUGIN_NAME, array( &$this, '_admin_print_styles' )  );
 
     // Cleanup unsaved slides
-    add_action( "{$this->namespace}_cleanup_create", array( &$this, 'cleanup_create'), 10, 1 );
+    add_action( "{$this->namespace}_cleanup_create", array( &$this, 'cleanup_create'), 20, 1 );
 
     // Hook for modifying options array
     if( method_exists( $this, 'slidewizard_slide_options' ) )
@@ -281,7 +281,7 @@ class Slides {
     ) );
 
     if( $post_status == 'auto-draft' ) {
-      wp_schedule_single_event( time() + 1, "{$this->namespace}_cleanup_create", $slide_id);
+      wp_schedule_single_event( time() + 5, "{$this->namespace}_cleanup_create", array( $slide_id ) );
     }
 
     // Set SlideWizard Source
@@ -472,13 +472,12 @@ class Slides {
    * slides will be cleaned when user never click save.
    */
   public function cleanup_create( $slide_id ) {
-    // // Get slides with an auto-draft status
-    // $slidewizard = $this->get( $slide_id, 'auto-draft' );
+    // Get slides with an auto-draft status
+    $slidewizard = $this->get( $slide_id, 'auto-draft' );
 
-    // if( !empty( $slidewizard ) ) {
-    //   $this->delete( $slide_id );
-    // }
-    echo $slide_id;
+    if( !empty( $slidewizard ) ) {
+      $this->delete( $slide_id );
+    }
   }
 
 
