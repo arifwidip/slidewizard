@@ -78,3 +78,39 @@
   filter: alpha(opacity=100);
   opacity: 1;
 }
+
+
+/* Slide Error
+------------------------------------------------------------------- */
+.slidewizard-error .slidewizard {
+  position: static !important
+}
+.slidewizard-wrapper .slidewizard-slide-error {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: #555;
+  background: -webkit-linear-gradient(#444, #666);
+  background: -moz-linear-gradient(#444, #666);
+  background: -o-linear-gradient(#444, #666);
+  background: -ms-linear-gradient(#444, #666);
+  background: linear-gradient(#444, #666);
+}
+.slidewizard-wrapper .slide-error-inner {
+  display: table;
+  height: 100%;
+}
+.slidewizard-wrapper .slide-error-inner h3 {
+  position: static;
+  text-align: center;
+  padding-left: 50px;
+  padding-right: 50px;
+  display: table-cell;
+  color: #f5f5f5;
+  line-height: 1.5;
+  font-size: 21px;
+  vertical-align: middle;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+}

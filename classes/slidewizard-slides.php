@@ -717,6 +717,9 @@ class Slides {
       return "";
     }
 
+    // Fetch slide item
+    $slides = $this->fetch_slides( $slidewizard );
+
     $themes = $SlideWizard->Themes->get( $slidewizard['themes'] );
 
     // Class for SlideWizard wrapper
@@ -727,6 +730,10 @@ class Slides {
     $wrapper_classes[] = "slidewizard-control-{$slidewizard['options']['show_slide_controls']}";
     $wrapper_classes[] = "slidewizard-navigation-{$slidewizard['options']['navigation_position']}";
     $wrapper_classes[] = "slidewizard-direction-{$slidewizard['options']['direction']}";
+    if( empty( $slides ) ) {
+      $wrapper_classes[] = "slidewizard-error";
+    }
+
     foreach( $slidewizard['source'] as $source ) {
       $wrapper_classes[] = "slidewizard-source-{$source}";
     }
@@ -765,10 +772,18 @@ class Slides {
     $html .= apply_filters( "{$this->namespace}_render_slidewizard_before", "", $slidewizard );
 
     $html .= '<div id="'. $slidewizard_unique_id .'" class="'. implode( " ", $slidewizard_classes ) .'">';
-
-    // Render slide item
-    $slides = $this->fetch_slides( $slidewizard );
-    $html .= $this->render_slide_item( $slides, $slidewizard );
+    
+    // Make sure slides array aren't empty
+    if( ! empty( $slides ) ) {
+      $html .= $this->render_slide_item( $slides, $slidewizard );
+    } else {
+      // If something is wrong, render the error output
+      ob_start();
+        include( SLIDEWIZARD_PLUGIN_DIR . '/views/partials/_slide-error.php' );
+        $error = ob_get_contents();
+      ob_end_clean();
+      $html .= $error;
+    }
 
     $html .= '</div>'; // End slidewizard
 
