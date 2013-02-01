@@ -33,7 +33,7 @@
   padding: 20px;
   background: #333;
   background: rgba(0,0,0,.85);
-  color: #fff
+  color: #eee
 }
 .themes-default .slide-image img {
   display: block;
@@ -93,8 +93,15 @@
 .themes-default.slidewizard-show-readmore .slide-more-link {
   display: inline;
 }
+
+/* Twitter 
+---------------------------- */
 .themes-default.slidewizard-source-twitter .slide-title {
   margin-bottom: 10px;
+  font-size: 15px;
+  line-height: 1.2;
+  font-weight: normal;
+  color: #eee;
 }
 .themes-default.slidewizard-source-twitter .slide-image img {
   /*max-width: 100%;
@@ -102,14 +109,57 @@
   height: auto;*/
   max-width: none
 }
+.themes-default.slidewizard-source-twitter .slide-author-name, 
+.themes-default.slidewizard-source-twitter .slide-date {
+  position: static;
+  margin-left: 0;
+  font-style: normal;
+}
+.themes-default.slidewizard-source-twitter .slide-author-name {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.themes-default.slidewizard-source-twitter .slide-author-name a {
+  color: #eee;
+}
+.themes-default.slidewizard-source-twitter .twitter-avatar {
+  float: left;
+  margin-right: 15px;
+}
+.themes-default.slidewizard-source-twitter .slide-inner-wrapper {
+  overflow: hidden
+}
+.themes-default.slidewizard-source-twitter .slide-meta {
+  margin-bottom: 0;
+}
+.themes-default.slidewizard-source-twitter .twitter-avatar {
+  position: relative;
+}
+.themes-default.slidewizard-source-twitter .twitter-avatar img {
+  border: 2px solid #eee;
+}
+.themes-default.slidewizard-source-twitter .retweeter_avatar {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  bottom: -5px;
+  right: -5px;
+  -webkit-box-shadow: 0 0 5px rgba(0,0,0,.5);
+  -moz-box-shadow: 0 0 5px rgba(0,0,0,.5);
+  box-shadow: 0 0 5px rgba(0,0,0,.5);
+}
 
+
+/* Dribbble 
+---------------------------- */
 .themes-default .dribbble-like-count,
 .themes-default .dribbble-rebound-count,
 .themes-default .dribbble-views-count {
   background: url("images/dribbble-sprites.png") no-repeat left 2px;
   padding-left: 17px;
   margin-right: 20px;
-  color: #fff;
+  color: #eee;
 }
 .themes-default .dribbble-rebound-count {
   background-position: 0 -42px;
@@ -117,6 +167,9 @@
 .themes-default .dribbble-views-count {
   background-position: 0 -21px;
 }
+
+/* Flickr
+---------------------------- */
 .themes-default.slidewizard-source-flickr .slide-author-name, 
 .themes-default.slidewizard-source-flickr .slide-date {
   top: 0;
@@ -134,6 +187,8 @@
   line-height: 18px;
 }
 
+/* Instagram
+---------------------------- */
 .themes-default.slidewizard-source-instagram .slide-meta {
   margin-bottom: 0;
 }
@@ -151,7 +206,7 @@
   position: absolute;
   top: 50%;
   font-size: 50px;
-  color: #fff;
+  color: #eee;
   z-index: 1000;
   text-align: center;
   height: 50px;
