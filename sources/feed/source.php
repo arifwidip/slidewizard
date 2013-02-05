@@ -131,6 +131,10 @@ class SlideWizardSource_Feed extends Slides {
     // Get Slides Item
     $slides_item = $this->get_slides_item( $slidewizard );
 
+    if( !$slides_item ) {
+      return $slides;
+    }
+
     foreach( $slides_item as $slide_item ) {
       $slide = array(
         'source' => $this->name,

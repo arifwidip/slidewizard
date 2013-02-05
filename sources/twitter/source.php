@@ -192,7 +192,7 @@ class SlideWizardSource_Twitter extends Slides {
     if( !$twitter_posts ) {
       $twitter_posts = array();
 
-      $response = wp_remote_get( $timeline_url );
+      $response = wp_remote_get( $timeline_url, array( 'sslverify' => false, 'timeout' => 30 ) );
       if( !is_wp_error( $response ) ) {
         $response_json = json_decode( $response['body'] );
 
@@ -215,6 +215,12 @@ class SlideWizardSource_Twitter extends Slides {
                 'created_at' => strtotime( $result->retweeted_status->created_at ),
                 'local_created_at' => $result->retweeted_status->created_at,
                 'description' => $result->retweeted_status->user->description,
+                'source_app' => $result->source,
+                'is_retweet' => true,
+                'retweeter_name' => $result->user->name,
+                'retweeter_username' => $result->user->screen_name,
+                'retweeter_url' => 'http://twitter.com/' . $result->user->screen_name,
+                'retweeter_avatar' => $result->user->profile_image_url
               );
               
               // Add Replying to data for original tweet:
@@ -240,7 +246,8 @@ class SlideWizardSource_Twitter extends Slides {
                 'excerpt' => $this->linkify_twitter_text($result->text),
                 'created_at' => strtotime( $result->created_at ),
                 'local_created_at' => $result->created_at,
-                'description' => $result->user->description
+                'description' => $result->user->description,
+                'source_app' => $result->source
               );
 
               // If this tweet is replying someone tweet
@@ -283,6 +290,9 @@ class SlideWizardSource_Twitter extends Slides {
 
     // Get Slides item
     $slides_item = $this->get_slides_item( $slidewizard );
+
+    if( !$slides_item )
+      return $slides;
 
     // Loop through all slides item to build slides array
     foreach( $slides_item as $slide_item) {
