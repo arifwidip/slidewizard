@@ -17,6 +17,8 @@ It is very simple to create a slider, you just have to choose the source and con
 
 Shortcode is used to show the slider on post or page. You can insert multiple slider on the same post or page.
 
+If you'd like to check out the code and contribute, [join us on GitHub](https://github.com/mambows/slidewizard). Pull requests, issues, and plugin recommendations are more than welcome!
+
 == Manual Installation ==
 
 The manual installation method involves downloading our feature-rich plugin and uploading it to your webserver via your favourite FTP application.
