@@ -130,7 +130,7 @@ class SlideWizardSource_Instagram extends Slides {
         $instagram_photos = array();
 
         $response = wp_remote_get( $feed_url, array( 'sslverify' => false, 'timeout' => 30 ) );
-        print_r($response);
+
         if( !is_wp_error( $response ) ) {
           $response_json = json_decode( $response['body'] );
 
