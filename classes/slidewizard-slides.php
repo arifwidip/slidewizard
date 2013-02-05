@@ -281,7 +281,7 @@ class Slides {
     ) );
 
     if( $post_status == 'auto-draft' ) {
-      wp_schedule_single_event( time() + 5, "{$this->namespace}_cleanup_create", array( $slide_id ) );
+      wp_schedule_single_event( time() + 30, "{$this->namespace}_cleanup_create", array( $slide_id ) );
     }
 
     // Set SlideWizard Source

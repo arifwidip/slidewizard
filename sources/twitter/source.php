@@ -192,7 +192,7 @@ class SlideWizardSource_Twitter extends Slides {
     if( !$twitter_posts ) {
       $twitter_posts = array();
 
-      $response = wp_remote_get( $timeline_url );
+      $response = wp_remote_get( $timeline_url, array( 'sslverify' => false, 'timeout' => 30 ) );
       if( !is_wp_error( $response ) ) {
         $response_json = json_decode( $response['body'] );
 
@@ -290,6 +290,9 @@ class SlideWizardSource_Twitter extends Slides {
 
     // Get Slides item
     $slides_item = $this->get_slides_item( $slidewizard );
+
+    if( !$slides_item )
+      return $slides;
 
     // Loop through all slides item to build slides array
     foreach( $slides_item as $slide_item) {

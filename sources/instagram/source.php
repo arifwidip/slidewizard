@@ -129,7 +129,8 @@ class SlideWizardSource_Instagram extends Slides {
       if( !$instagram_photos ) {
         $instagram_photos = array();
 
-        $response = wp_remote_get( $feed_url );
+        $response = wp_remote_get( $feed_url, array( 'sslverify' => false, 'timeout' => 30 ) );
+        print_r($response);
         if( !is_wp_error( $response ) ) {
           $response_json = json_decode( $response['body'] );
 
@@ -177,7 +178,7 @@ class SlideWizardSource_Instagram extends Slides {
   function get_instagram_user_id( $token, $username ) {
     $api_url = "https://api.instagram.com/v1/users/search?access_token={$token}&q={$username}";
 
-    $response = wp_remote_get( $api_url );
+    $response = wp_remote_get( $api_url, array( 'sslverify' => false, 'timeout' => 30 ) );
     if( !is_wp_error( $response ) ) {
       $response_json = json_decode( $response['body'] );
       return $response_json->data[0]->id;
@@ -205,40 +206,42 @@ class SlideWizardSource_Instagram extends Slides {
     // Get Slides item
     $slides_item = $this->get_slides_item( $slidewizard );
 
-    if( isset( $slides_item ) ) {
-      // Loop through all slides item to build slides array
-      foreach( $slides_item as $slide_item) {
-        $slide = array(
-          'source' => $this->name,
-          'title' => $slide_item['title'],
-          'created_at' => $slide_item['created_at'],
-          'classes' => array( 'no-excerpt' )
-        );
+    if( !$slides_item ) {
+      return $slides;
+    }
+    
+    // Loop through all slides item to build slides array
+    foreach( $slides_item as $slide_item) {
+      $slide = array(
+        'source' => $this->name,
+        'title' => $slide_item['title'],
+        'created_at' => $slide_item['created_at'],
+        'classes' => array( 'no-excerpt' )
+      );
 
-        $slide = array_merge( $this->slide_item_prop, $slide );
+      $slide = array_merge( $this->slide_item_prop, $slide );
 
-        // Check if post has image
-        $has_image = !empty( $slide_item['image'] );
+      // Check if post has image
+      $has_image = !empty( $slide_item['image'] );
 
-        if( $has_image ) {
-          $slide['classes'][] = "has-image";
-        } else {
-          $slide['classes'][] = "no-image";
-        }
-
-        if( !empty( $slide_item['title'] ) ) {
-          $slide['classes'][] = "has-title";
-        } else {
-          $slide['classes'][] = "no-title";
-        }
-
-        // Link target
-        $slide_item['target'] = $slidewizard['options']['open_link_in'];
-
-        $slide['content'] = $SlideWizard->Themes->process_template( $slide_item, $slidewizard );
-
-        $slides[] = $slide;
+      if( $has_image ) {
+        $slide['classes'][] = "has-image";
+      } else {
+        $slide['classes'][] = "no-image";
       }
+
+      if( !empty( $slide_item['title'] ) ) {
+        $slide['classes'][] = "has-title";
+      } else {
+        $slide['classes'][] = "no-title";
+      }
+
+      // Link target
+      $slide_item['target'] = $slidewizard['options']['open_link_in'];
+
+      $slide['content'] = $SlideWizard->Themes->process_template( $slide_item, $slidewizard );
+
+      $slides[] = $slide;
     }
 
     return $slides;

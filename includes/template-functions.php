@@ -315,7 +315,7 @@ if( !function_exists( 'slidewizard_render_input_single' ) ) {
     }
 
     // Alternative description
-    if( $alt_desc ) {
+    if( $alt_desc && isset( $option['description'] ) ) {
       $output .= '<div class="alt-desc">'. $option['description'] .'</div>';
     }
 
