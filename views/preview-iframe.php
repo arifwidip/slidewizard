@@ -16,11 +16,11 @@
     <?php
     // Print scripts in head
     foreach( $scripts as $script ) {
+      if( $script == 'jquery' ) $script = 'jquery-core';
       $src = $wp_scripts->registered[$script]->src;
       if ( !preg_match( '|^https?://|', $src ) && !( $content_url && 0 === strpos( $src, $content_url ) ) ) {
         $src = $base_url . $src;
       }
-
       echo '<script type="text/javascript" src="' . $src . ( strpos( $src, "?" ) !== false ? "&" : "?" ) . "v=" . $wp_scripts->registered[$script]->ver . '"></script>' . "\n";
     }
     ?>

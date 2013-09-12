@@ -10,12 +10,23 @@
   height: auto
 }
 
+@font-face {
+    font-family: 'bebas_neueregular';
+    src: url('../font/BebasNeue-webfont.eot');
+    src: url('../font/BebasNeue-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/BebasNeue-webfont.woff') format('woff'),
+         url('../font/BebasNeue-webfont.ttf') format('truetype'),
+         url('../font/BebasNeue-webfont.svg#bebas_neueregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
 
 /* SlideWizard Top Block
 =================================================================== */
 .slidewizard-topblock,
 .slidewizard-form-header {
-  background: #111 url("../images/topblock-pattern.png");
+  background: #222;
   border: 1px solid #000;
   border-bottom: 0;
   -webkit-border-radius: 5px 5px 0 0;
@@ -29,16 +40,32 @@
   padding: 20px;
 }
   .slidewizard-topblock h1 {
-    color: #fff;
-    float: left;
-    text-shadow: 0 1px #000;
-    letter-spacing: -0.075em
+    color: #FFF;
+	font-family: "bebas_neueregular",sans-serif;
+	font-size: 28px;
+	font-weight:normal;
   }
+  .slidewizard-topblock h1 a{
+	color: #FFF !important; 
+  }
+  .logo-wrapper{
+	float:left;
+	position:relative;
+  }
+  .slidewizard-topblock h1 img{
+	vertical-align: middle;
+	margin-right: 5px;
+	width: 32px;
+	position: relative;
+	top: -3px;
+	height: 32px;
+	}
   .slidewizard-topblock .slidewizard-version {
-    font-weight: normal;
-    font-size: 13px;
-    padding: 4px 5px;
-    letter-spacing: 0;
+    color: #FFF;
+	bottom: 3px;
+	position: absolute;
+	right: 0px;
+	font-size: 11px;
   }
   .slidewizard-topblock .cl-logo {
     float: right;
@@ -262,7 +289,47 @@
   line-height: 28px;
   color: #999;
 }
-
+.btn-primary{
+	color: #905F00;
+	border-color: #DA903B;
+	background-color: #FFB101;
+	background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #FFCA00), color-stop(100%, #FFB101));
+	background-image: -webkit-linear-gradient(top, #FFCA00 0%, #FFB101 100%);
+	background-image: -moz-linear-gradient(top, #ffca00 0%, #ffb101 100%);
+	background-image: -o-linear-gradient(top, #ffca00 0%, #ffb101 100%);
+	background-image: linear-gradient(top, #ffca00 0%, #ffb101 100%);
+	
+	
+	cursor: pointer;
+text-align: center;
+padding: 6px 10px 6px;
+line-height: normal;
+display: inline-block;
+vertical-align: middle;
+font-size: 14px !important;
+line-height: normal;
+border: 1px solid rgba(0, 0, 0, 0);
+position: relative;
+font-weight: bold;
+text-decoration: none;
+background-repeat: no-repeat;
+text-shadow: 0 1px 0 rgba(255, 255, 255, 0.49);
+filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 0 rgba(255, 255, 255, 0.6) inset;
+-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 0 rgba(255, 255, 255, 0.6) inset;
+box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 0 rgba(255, 255, 255, 0.6) inset;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+-ms-border-radius: 5px;
+-o-border-radius: 5px;
+border-radius: 5px;
+}
+.btn-primary:hover{
+	color: #905F00;
+	background-color: #FFCA00;
+	text-decoration: none;
+background-position: 0 15px;
+}
 /* Input Type Radio
 ------------------------------------------------------------------- */
 .control-option-radio label.radio {

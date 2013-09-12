@@ -3,7 +3,7 @@
 Plugin Name: SlideWizard
 Plugin URI: http://colorlabsproject.com/plugins/slidewizard/
 Description: Description
-Version: 1.0
+Version: 1.0.1
 Author: ColorLabs & Company
 Author URI: http://colorlabsproject.com/
 */
@@ -466,7 +466,7 @@ class SlideWizard {
 
     // If user role can manage options
     if( $show_menu === true ) {
-      add_menu_page( 'Manage SlideWizard', 'SlideWizard', 'publish_posts', SLIDEWIZARD_PLUGIN_NAME, array( &$this, 'page_route' ), '', 40 );
+      add_menu_page( 'Manage SlideWizard', 'SlideWizard', 'publish_posts', SLIDEWIZARD_PLUGIN_NAME, array( &$this, 'page_route' ), plugin_dir_url( __FILE__ )."images/menu-icon.png", 40 );
     }
   }
 
@@ -765,7 +765,7 @@ class SlideWizard {
 
     $filtered = array();
     foreach( $themes as $theme ) {
-      $themes_intersect = array_intersect( $slidewizard['source'], $theme['meta']['sources'] );
+      $themes_intersect = array_intersect( (array)$slidewizard['source'], $theme['meta']['sources'] );
       if( !empty( $themes_intersect ) ) {
         $filtered[] = $theme;
       }

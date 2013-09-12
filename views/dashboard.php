@@ -6,11 +6,15 @@
 ?>
 <div class="slidewizard-container">
   <div class="slidewizard-topblock clearfix">
-    <h1>
-      SlideWizard
-      <sup class="slidewizard-version"><?php echo self::$version; ?></sup>
-    </h1>
-    
+	<div class="logo-wrapper">
+		<h1>
+			<a href="http://colorlabsproject.com/plugins/slidewizard/" target="_blank" title="SlideWizard">
+			<img src="<?php echo plugins_url();?>/slidewizard/images/logo.png">
+		  SlideWizard 
+		  </a>
+		</h1>
+		<sup class="slidewizard-version"><?php echo self::$version; ?></sup>
+    </div>
     <a class="cl-logo" href="http://colorlabsproject.com/" target="_blank">
       <img src="<?php echo SLIDEWIZARD_PLUGIN_URL . '/images/logo-cl.png' ;?>">
     </a>

@@ -32,7 +32,8 @@ The manual installation method involves downloading our feature-rich plugin and 
 Automatic updates should work a charm; as always though, ensure you backup your site just in case.
 
 == Changelog ==
-
+= 1.0.1 =
+	Update Dashboard Style 
+  
 = 1.0.0 =
-
 * First release!
