@@ -17,7 +17,8 @@ class SlideWizardSource_Instagram extends Slides {
         "label" => "Access Token",
         "type" => "text",
         "hide_field" => true,
-        "datatype" => "string"
+        "datatype" => "string",
+        "default" => ""
       ),
       "instagram_user_name" => array(
         "label" => "Username",
@@ -49,7 +50,7 @@ class SlideWizardSource_Instagram extends Slides {
 
     $api_url = "{$this->auth_url}?client_id={$this->client_id}";
     $api_url .= "&redirect_uri={$this->redirect_uri}?forward_url={$forward_url}";
-    $api_url .= "&response_type=code";
+    $api_url .= "&response_type=token";
     
     wp_redirect( $api_url );
     die;
@@ -264,8 +265,9 @@ class SlideWizardSource_Instagram extends Slides {
     $namespace = $this->namespace;
 
     // If Instagram token not exists
-    if( !isset($slidewizard['options']['instagram_access_token']) ) {
+    if( empty($slidewizard['options']['instagram_access_token']) ) {
       if( isset( $_REQUEST['token'] ) ) {
+
         $this->source_options['Setup']['instagram_access_token']['default'] = $_REQUEST['token'];
 
         // Save instagram token for later use

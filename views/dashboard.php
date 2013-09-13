@@ -30,4 +30,12 @@
   <div class="slidewizard-main">
     <?php include SLIDEWIZARD_PLUGIN_DIR . "/views/partials/_slides-list.php"; ?>
   </div><!-- .slidewizard-main -->
+  
+  <div class="slidewizard-footnote">
+    <ul>
+      <li class="docs"><a title="Theme Documentation" href="http://colorlabsproject.com/documentation/slidewizard" target="_blank">View Documentation</a></li>
+      <li class="forum"><a href="http://colorlabsproject.com/resolve/" target="_blank">Submit a Support Ticket</a></li>
+    </ul>
+  </div>
+
 </div><!-- .slidewizard-container -->

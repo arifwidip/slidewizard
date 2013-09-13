@@ -4,6 +4,10 @@ class SlideWizardSource_Twitter extends Slides {
   var $name = "twitter";
   var $taxonomies = array( 'twitter' );
 
+  // Twitter API Key
+  var $consumer_key = 'tZC2RgSO04T7ctQQDIFw';
+  var $consumer_secret = 'xB8YWcEYkzqnqGAgHia84YVWlGSZqRnZn0otis2Ho';
+
   // Specific options for this source
   var $source_options = array(
     'Setup' => array(
@@ -181,7 +185,7 @@ class SlideWizardSource_Twitter extends Slides {
     if( !isset($username) )
       $username = $this->source_options['Setup']['username']['default'];
 
-    $timeline_url = "https://api.twitter.com/1/statuses/user_timeline.json?include_entities=true&include_rts=true&screen_name=" . urlencode( $username ) . "&count=" .urlencode( $slidewizard['options']['number_of_slides'] ) ;
+    $timeline_url = "https://api.twitter.com/1.1/statuses/user_timeline.json?include_entities=true&include_rts=true&screen_name=" . urlencode( $username ) . "&count=" .urlencode( $slidewizard['options']['number_of_slides'] ) ;
 
     // Create cache key
     $cache_key = $slide_id . $timeline_url . $slidewizard['options']['cache_duration'] . $this->name;
@@ -192,7 +196,13 @@ class SlideWizardSource_Twitter extends Slides {
     if( !$twitter_posts ) {
       $twitter_posts = array();
 
-      $response = wp_remote_get( $timeline_url, array( 'sslverify' => false, 'timeout' => 30 ) );
+      $post_headers = array( 'Authorization' => 'Bearer ' . $this->get_access_token() );
+      $response = wp_remote_get( $timeline_url, array( 
+        'headers' => $post_headers, 
+        'timeout' => 20,
+        'sslverify' => false 
+      ));
+
       if( !is_wp_error( $response ) ) {
         $response_json = json_decode( $response['body'] );
 
@@ -269,6 +279,37 @@ class SlideWizardSource_Twitter extends Slides {
     }
     
     return $twitter_posts;
+  }
+
+
+  /**
+   * Get Twitter application-only access token
+   * 
+   * @return string Access token
+   */
+  function get_access_token() {
+    $consumer_key = urlencode( $this->consumer_key );
+    $consumer_secret = urlencode( $this->consumer_secret );
+    $bearer_token = base64_encode( $consumer_key . ':' . $consumer_secret );
+
+    $oauth_url = 'https://api.twitter.com/oauth2/token';
+
+    $headers = array( 'Authorization' => 'Basic ' . $bearer_token );
+    $body = array( 'grant_type' => 'client_credentials' );
+
+    $response = wp_remote_post( $oauth_url, array(
+      'headers' => $headers,
+      'body' => $body,
+      'timeout' => 20,
+      'sslverify' => false
+    ) );
+
+    if( !is_wp_error( $response ) ) {
+      $response_json = json_decode( $response['body'] );
+      return $response_json->access_token;
+    } else {
+      return false;
+    }
   }
 
 
