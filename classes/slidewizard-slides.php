@@ -721,7 +721,7 @@ class Slides {
     $slides = $this->fetch_slides( $slidewizard );
 
     $themes = $SlideWizard->Themes->get( $slidewizard['themes'] );
-
+    
     // Class for SlideWizard wrapper
     $wrapper_classes = array(
       'slidewizard-wrapper'

@@ -2,10 +2,11 @@
 /*
 Plugin Name: SlideWizard
 Plugin URI: http://colorlabsproject.com/plugins/slidewizard/
-Description: Description
-Version: 1.0.1
+Description: SlideWizard helps you to create beautiful slider from various source. 
+Version: 1.0.2
 Author: ColorLabs & Company
 Author URI: http://colorlabsproject.com/
+Text Domain: slidewizard
 */
 
 /**
@@ -43,10 +44,10 @@ class SlideWizard {
 
   public $post_type;
 
-  static $namespace = "slidewizard";
+  public $namespace = "slidewizard";
   static $friendly_name = "SlideWizard";
   
-  static $version = '1.0.0';
+  static $version = '1.0.2';
 
   // Environment, 'development' or 'production'
   // Don't forget to change back to production
@@ -105,9 +106,6 @@ class SlideWizard {
    */
   function __construct() {
     SlideWizard::load_constant();
-
-    $this->friendly_name = SlideWizard::$friendly_name;
-    $this->namespace = SlideWizard::$namespace;
 
     /**
      * Make this plugin available for translation.
@@ -233,7 +231,10 @@ class SlideWizard {
     add_shortcode( 'slidewizard', array( &$this, 'shortcode' ) );
 
     add_action( "media_buttons", array( &$this, "media_button" ), 19 );
-
+		
+		// Add SlideWizard Documentation
+		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'slidewizard_action_links' ) );
+		
     // Hook when plugin activated
     register_activation_hook( __FILE__, array( &$this, 'activate' ) );
   }
@@ -368,7 +369,15 @@ class SlideWizard {
     }
   }
 
+	function slidewizard_action_links( $links ) {
 
+		$plugin_links = array(
+			'<a href="http://colorlabsproject.com/documentation/slidewizard/" target="_blank">' . __( 'Documentation' ) . '</a>'
+		);
+
+		return array_merge( $plugin_links, $links );
+	}
+	
   /**
    * Load javascripts for slidewizard options page
    * 

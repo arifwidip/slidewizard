@@ -119,7 +119,7 @@ class SlideWizardThemes_Helper {
                   $option_params['value'] = array_merge( $options[$options_group][$option_key]['value'], $option_params['value'] );
               }
               // Merge options
-              $options[$options_group][$option_key] = array_merge( (array) $option[$options_group][$option_key], $option_params );
+              $options[$options_group][$option_key] = array_merge( (array) $options[$options_group][$option_key], $option_params );
             } else {
               // Define options
               $options[$options_group][$option_key] = $option_params;

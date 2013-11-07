@@ -2,7 +2,7 @@
 Contributors: colorlabs
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=paypal@colorlabsproject.com&item_name=Donation+for+Laboratory
 Requires at least: WP 3.5.0
-Tested up to: WordPress 3.5.0
+Tested up to: WordPress 3.6.1
 Stable tag: trunk
 License: GPLv3 or later
 Tags: slider, flickr slider, instagram slider, feed slider, rss slider, dribbble slider, posts slider, twitter slider, photo, images 
@@ -31,9 +31,21 @@ The manual installation method involves downloading our feature-rich plugin and 
 
 Automatic updates should work a charm; as always though, ensure you backup your site just in case.
 
+== Screenshots ==
+
+1. SlideWizard Plugin Panel.
+2. Create Slide
+3. Insert your SlideWizard into the post.
+
 == Changelog ==
+= 1.0.2 =
+* Update Dashboard Style
+* Adding Twitter Stream
+* Fix Bugs
+* Adding Documentation Link
+	
 = 1.0.1 =
-	Update Dashboard Style 
+* Update Dashboard Style 
   
 = 1.0.0 =
 * First release!
