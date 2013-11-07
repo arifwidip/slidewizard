@@ -1,6 +1,5 @@
 .slidewizard-container {
   margin-top: 30px;
-  max-width: 940px;
   padding-right: 20px;
 }
 .slidewizard-container a {
@@ -37,7 +36,7 @@
   box-shadow: 0 1px rgba(255, 255, 255, .2) inset;
 }
 .slidewizard-topblock {
-  padding: 20px;
+  padding: 10px 20px;
 }
   .slidewizard-topblock h1 {
     color: #FFF;
@@ -67,12 +66,9 @@
 	right: 0px;
 	font-size: 11px;
   }
-  .slidewizard-topblock .cl-logo {
+  .slidewizard-topblock .btn{
     float: right;
-    margin: 10px 0;
-  }
-  .slidewizard-topblock .cl-logo img {
-    width: 128px;
+    margin: 15px 0 5px;
   }
 
 
@@ -90,9 +86,9 @@
 =================================================================== */
 .slidewizard-main {
   border: 1px solid #ccc;
-  border-top-width: 5px;
+  border-top-width: 0px;
   background: #f9f9f9;
-  padding: 20px;
+  padding: 20px 20px 10px;
 }
 .slidewizard-form-body iframe {
   margin: 20px auto;
@@ -134,6 +130,7 @@
 .slidewizard-form-title input {
   font-size: 24px;
   line-height: 1;
+	width: 100%;
 }
 .slidewizard-form-header {
   padding: 10px;
@@ -592,3 +589,43 @@ background-position: 0 15px;
   .sources-list .thumbnail img {
     display: block;
   }
+	
+
+.slidewizard-footnote li:last-child:after {
+    display: none;
+}
+.slidewizard-footer {
+    margin-top: 20px;
+    text-align: right;
+}
+.slidewizard-twitter-stream{
+		margin-bottom: 20px;
+}
+.slidewizard-twitter-stream .stream-label {
+    background: url("../images/twitter.png") no-repeat scroll left center transparent;
+    float: left;
+    font-weight: bold;
+    margin-right: 10px;
+    padding-left: 30px;
+    text-transform: uppercase;
+		line-height: 20px;
+}
+.slidewizard-twitter-stream a {
+	text-decoration: none;
+}
+.slidewizard-twitter-stream ul {
+	margin: 0;
+}
+.slidewizard-twitter-stream li {
+	display: none;
+}
+.slidewizard-twitter-stream li:first-child {
+	display: block
+}	
+
+.slidewizard-twitter-stream li .time a {
+    color: #BBBBBB;
+    font-size: 10px;
+    font-style: italic;
+    margin-left: 3px;
+}

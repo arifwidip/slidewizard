@@ -1,5 +1,12 @@
 *** SlideWizard Changelog ***
 
+2013.09.24 - Version 1.0.2
+- Add: Documentation Link
+  File Affected: slidewizard.php
+- Fix: Update Dashboard Style
+	File Added: twitter.png
+  Files Affected: slidewizard-admin-script.js, slidewizard-admin-style.css, dashboard.php, slide-form.php 
+	
 2013.09.09 - Version 1.0.1
 - Fix: Bug Preview Slidewizard!
   File Affected: preview-iframe.php
