@@ -210,7 +210,7 @@ if( !function_exists( 'slidewizard_render_input_single' ) ) {
     $class = '';
 
     // If value not stored, get value from default option
-    $stored_value = ( isset($stored_options[$id]) ) ? $stored_options[$id] : $option['default'];
+    $stored_value = ( !empty($stored_options[$id]) ) ? $stored_options[$id] : $option['default'];
 
     // If attributes defined
     if( isset($option['attr']) && $option['attr'] ) {

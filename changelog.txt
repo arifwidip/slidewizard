@@ -1,4 +1,12 @@
 *** SlideWizard Changelog ***
 
+2013.09.09 - Version 1.0.1
+- Fix: Bug Preview Slidewizard!
+  File Affected: preview-iframe.php
+- Fix: Icon Menu
+  File Affected: slidewizard.php
+- Update Dashboard Style 
+  File Affected: style.css
+  
 2012.01.25 - Version 1.0.0
- * First release!
+- First Release!

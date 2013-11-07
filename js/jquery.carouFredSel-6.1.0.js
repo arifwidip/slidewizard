@@ -1,9 +1,9 @@
 /*
- *	jQuery carouFredSel 6.1.0
+ *	jQuery carouFredSel 6.2.1
  *	Demo's and documentation:
- *	caroufredsel.frebsite.nl
+ *	caroufredsel.dev7studios.com
  *
- *	Copyright (c) 2012 Fred Heusschen
+ *	Copyright (c) 2013 Fred Heusschen
  *	www.frebsite.nl
  *
  *	Dual licensed under the MIT and GPL licenses.
@@ -51,8 +51,9 @@
 			$cfs.trigger('_cfs_triggerEvent', ['destroy', true]);
 		}
 
+		var FN = {};
 
-		$cfs._cfs_init = function(o, setOrig, start)
+		FN._init = function(o, setOrig, start)
 		{
 			o = go_getObject($tt0, o);
 
@@ -271,7 +272,7 @@
 		};	//	/init
 
 
-		$cfs._cfs_build = function() {
+		FN._build = function() {
 			$cfs.data('_cfs_isCarousel', true);
 
 			var a_itm = $cfs.children(),
@@ -286,12 +287,22 @@
 					break;
 			}
 
-			$wrp.css(orgCSS).css({
+			if (conf.wrapper == 'parent')
+			{
+				sz_storeOrigCss($wrp);
+			}
+			else
+			{
+				$wrp.css(orgCSS);
+			}
+			$wrp.css({
 				'overflow'		: 'hidden',
 				'position'		: newPosition
 			});
 
-			$cfs.data('_cfs_origCss', orgCSS).css({
+			sz_storeOrigCss($cfs);
+			$cfs.data('_cfs_origCssZindex', orgCSS.zIndex);
+			$cfs.css({
 				'textAlign'		: 'left',
 				'float'			: 'none',
 				'position'		: 'absolute',
@@ -306,7 +317,7 @@
 			});
 
 			sz_storeMargin(a_itm, opts);
-			sz_storeSizes(a_itm, opts);
+			sz_storeOrigCss(a_itm);
 			if (opts.responsive)
 			{
 				sz_setResponsiveSizes(opts, a_itm);
@@ -315,8 +326,8 @@
 		};	//	/build
 
 
-		$cfs._cfs_bind_events = function() {
-			$cfs._cfs_unbind_events();
+		FN._bind_events = function() {
+			FN._unbind_events();
 
 
 			//	stop event
@@ -515,7 +526,7 @@
 					crsl.isPaused = false;
 					crsl.isScrolling = true;
 					scrl.startTime = getTime();
-					sc_startScroll(scrl);
+					sc_startScroll(scrl, conf);
 				}
 				else
 				{
@@ -897,7 +908,7 @@
 				$cfs.css(a_lef);
 
 				//	reset all scrolls
-				scrl = sc_setScroll(a_dur, sO.easing);
+				scrl = sc_setScroll(a_dur, sO.easing, conf);
 
 				//	animate / set carousel
 				a_cfs[opts.d['left']] = (opts.usePadding) ? opts.padding[opts.d[3]] : 0;
@@ -1005,7 +1016,7 @@
 					}
 				};
 
-				//	fire onBefore callback 
+				//	fire onBefore callback
 				crsl.isScrolling = true;
 				tmrs = sc_clearTimers(tmrs);
 				clbk.onBefore = sc_fireCallbacks($tt0, sO, 'onBefore', cb_arguments, clbk);
@@ -1031,9 +1042,9 @@
 							_s_paddingcur();
 							_position();
 							_moveitems();
-							scrl = sc_setScroll(a_dur, sO.easing);
+							scrl = sc_setScroll(a_dur, sO.easing, conf);
 							scrl.anims.push([$cfs, { 'opacity': 1 }, _onafter]);
-							sc_startScroll(scrl);
+							sc_startScroll(scrl, conf);
 						}]);
 						break;
 
@@ -1064,7 +1075,6 @@
 					case 'cover-fade':
 						scrl.anims.push([$cfs, { 'opacity': 0 }]);
 						scrl.anims.push([$cf2, a_cfs, function() {
-							$cfs.css({ 'opacity': 1 });
 							_s_paddingold();
 							_s_paddingnew();
 							_s_paddingcur();
@@ -1109,7 +1119,7 @@
 						break;
 				}
 
-				sc_startScroll(scrl);
+				sc_startScroll(scrl, conf);
 				cf_setCookie(opts.cookie, $cfs, conf);
 
 				$cfs.trigger(cf_e('updatePageStatus', conf), [false, w_siz]);
@@ -1343,7 +1353,7 @@
 				}
 
 				//	reset all scrolls
-				scrl = sc_setScroll(a_dur, sO.easing);
+				scrl = sc_setScroll(a_dur, sO.easing, conf);
 
 				//	animate / set carousel
 				a_cfs[opts.d['left']] = -i_siz;
@@ -1369,6 +1379,7 @@
 				if (opts.usePadding)
 				{
 					var i_new_l_m = i_new_l.data('_cfs_origCssMargin');
+
 					if (pR >= 0)
 					{
 						i_new_l_m += opts.padding[opts.d[1]];
@@ -1391,7 +1402,9 @@
 					{
 						i_cur_l_m += opts.padding[opts.d[3]];
 					}
+
 					a_cur[opts.d['marginRight']] = i_cur_l_m;
+
 					_s_paddingcur = function() {
 						i_cur_l.css(a_cur);
 					};
@@ -1425,7 +1438,7 @@
 					{
 						if (itms.total < opts.items.visible+nI) {
 							var i_cur_l = $cfs.children().eq(opts.items.visible-1);
-							i_cur_l.css(opts.d['marginRight'], i_cur_l.data('_cfs_origCssMargin') + opts.padding[opts.d[3]]);
+							i_cur_l.css(opts.d['marginRight'], i_cur_l.data('_cfs_origCssMargin') + opts.padding[opts.d[1]]);
 						}
 						l_itm.css(opts.d['marginRight'], l_itm.data('_cfs_origCssMargin'));
 					}
@@ -1436,7 +1449,7 @@
 
 				//	fire onAfter callbacks
 				_onafter = function() {
-					$cfs.css('zIndex', $cfs.data('_cfs_origCss').zIndex);
+					$cfs.css('zIndex', $cfs.data('_cfs_origCssZindex'));
 					sc_afterScroll($cfs, $cf2, sO);
 					crsl.isScrolling = false;
 					clbk.onAfter = sc_fireCallbacks($tt0, sO, 'onAfter', cb_arguments, clbk);
@@ -1472,9 +1485,9 @@
 							_s_paddingcur();
 							_position();
 							_moveitems();
-							scrl = sc_setScroll(a_dur, sO.easing);
+							scrl = sc_setScroll(a_dur, sO.easing, conf);
 							scrl.anims.push([$cfs, { 'opacity': 1 }, _onafter]);
-							sc_startScroll(scrl);
+							sc_startScroll(scrl, conf);
 						}]);
 						break;
 
@@ -1540,7 +1553,7 @@
 						break;
 				}
 
-				sc_startScroll(scrl);
+				sc_startScroll(scrl, conf);
 				cf_setCookie(opts.cookie, $cfs, conf);
 
 				$cfs.trigger(cf_e('updatePageStatus', conf), [false, w_siz]);
@@ -1571,16 +1584,6 @@
 				{
 					obj = false;
 				}
-
-/*
-				if (crsl.isScrolling)
-				{
-					if (!is_object(obj) || obj.duration > 0)
-					{
-//						return false;
-					}
-				}
-*/
 
 				if (dir != 'prev' && dir != 'next')
 				{
@@ -1750,7 +1753,7 @@
 				}
 
 				sz_storeMargin(itm, opts);
-				sz_storeSizes(itm, opts);
+				sz_storeOrigCss(itm);
 
 				var orgNum = num,
 					before = 'before';
@@ -1829,12 +1832,16 @@
 				dev = a[2];
 
 				var removed = false;
+
 				if (num instanceof $ && num.length > 1)
 				{
 					$removed = $();
 					num.each(function(i, el) {
 						var $rem = $cfs.trigger(cf_e('removeItem', conf), [$(this), org, dev]);
-						if ($rem) $removed = $removed.add($rem);
+						if ( $rem ) 
+						{
+							$removed = $removed.add($rem);
+						}
 					});
 					return $removed;
 				}
@@ -1847,11 +1854,15 @@
 				{
 					num = gn_getItemIndex(num, dev, org, itms, $cfs);
 					var $removed = $cfs.children().eq(num);
-					if ($removed.length){
-						if (num < itms.first) itms.first -= $removed.length;
+					if ( $removed.length )
+					{
+						if (num < itms.first)
+						{
+							itms.first -= $removed.length;
+						}
 					}
 				}
-				if ($removed && $removed.length)
+				if ( $removed && $removed.length )
 				{
 					$removed.detach();
 					itms.total = $cfs.children().length;
@@ -2067,8 +2078,8 @@
 				if (reInit)
 				{
 					sz_resetMargin($cfs.children(), opts);
-					$cfs._cfs_init(opts_orig);
-					$cfs._cfs_bind_buttons();
+					FN._init(opts_orig);
+					FN._bind_buttons();
 					var sz = sz_setSizes($cfs, opts);
 					$cfs.trigger(cf_e('updatePageStatus', conf), [true, sz]);
 				}
@@ -2237,18 +2248,18 @@
 				{
 					$cfs.trigger(cf_e('jumpToStart', conf));
 				}
-				sz_resetMargin($cfs.children(), opts);
-				if (opts.responsive)
+				sz_restoreOrigCss($cfs.children());
+				sz_restoreOrigCss($cfs);
+				FN._unbind_events();
+				FN._unbind_buttons();
+				if (conf.wrapper == 'parent')
 				{
-					$cfs.children().each(function() {
-						$(this).css($(this).data('_cfs_origCssSizes'));
-					});
+					sz_restoreOrigCss($wrp);
 				}
-
-				$cfs.css($cfs.data('_cfs_origCss'));
-				$cfs._cfs_unbind_events();
-				$cfs._cfs_unbind_buttons();
-				$wrp.replaceWith($cfs);
+				else
+				{
+					$wrp.replaceWith($cfs);
+				}
 
 				return true;
 			});
@@ -2256,22 +2267,22 @@
 
 			//	debug event
 			$cfs.bind(cf_e('debug', conf), function(e) {
-				debug(conf, 'Carousel width: '+opts.width);
-				debug(conf, 'Carousel height: '+opts.height);
-				debug(conf, 'Item widths: '+opts.items.width);
-				debug(conf, 'Item heights: '+opts.items.height);
-				debug(conf, 'Number of items visible: '+opts.items.visible);
+				debug(conf, 'Carousel width: ' + opts.width);
+				debug(conf, 'Carousel height: ' + opts.height);
+				debug(conf, 'Item widths: ' + opts.items.width);
+				debug(conf, 'Item heights: ' + opts.items.height);
+				debug(conf, 'Number of items visible: ' + opts.items.visible);
 				if (opts.auto.play)
 				{
-					debug(conf, 'Number of items scrolled automatically: '+opts.auto.items);
+					debug(conf, 'Number of items scrolled automatically: ' + opts.auto.items);
 				}
 				if (opts.prev.button)
 				{
-					debug(conf, 'Number of items scrolled backward: '+opts.prev.items);
+					debug(conf, 'Number of items scrolled backward: ' + opts.prev.items);
 				}
 				if (opts.next.button)
 				{
-					debug(conf, 'Number of items scrolled forward: '+opts.next.items);
+					debug(conf, 'Number of items scrolled forward: ' + opts.next.items);
 				}
 				return conf.debug;
 			});
@@ -2285,15 +2296,15 @@
 		};	//	/bind_events
 
 
-		$cfs._cfs_unbind_events = function() {
+		FN._unbind_events = function() {
 			$cfs.unbind(cf_e('', conf));
 			$cfs.unbind(cf_e('', conf, false));
 			$cfs.unbind('_cfs_triggerEvent');
 		};	//	/unbind_events
 
 
-		$cfs._cfs_bind_buttons = function() {
-			$cfs._cfs_unbind_buttons();
+		FN._bind_buttons = function() {
+			FN._unbind_buttons();
 			nv_showNavi(opts, itms.total, conf);
 			nv_enableNavi(opts, itms.first, conf);
 
@@ -2404,45 +2415,6 @@
 				});
 			}
 
-
-			//	DEPRECATED
-			if (opts.prev.wipe || opts.next.wipe)
-			{
-				deprecated( 'the touchwipe-plugin', 'the touchSwipe-plugin' );
-				if ($.fn.touchwipe)
-				{
-					var wP = (opts.prev.wipe) ? function() { $cfs.trigger(cf_e('prev', conf)) } : null,
-						wN = (opts.next.wipe) ? function() { $cfs.trigger(cf_e('next', conf)) } : null;
-
-					if (wN || wN)
-					{
-						if (!crsl.touchwipe)
-						{
-							crsl.touchwipe = true;
-							var twOps = {
-								'min_move_x': 30,
-								'min_move_y': 30,
-								'preventDefaultEvents': true
-							};
-							switch (opts.direction)
-							{
-								case 'up':
-								case 'down':
-									twOps.wipeUp = wP;
-									twOps.wipeDown = wN;
-									break;
-								default:
-									twOps.wipeLeft = wN;
-									twOps.wipeRight = wP;
-							}
-							$wrp.touchwipe(twOps);
-						}
-					}
-				}
-			}
-			//	/DEPRECATED
-
-
 			//	swipe
 			if ($.fn.swipe)
 			{
@@ -2478,27 +2450,6 @@
 			//	mousewheel
 			if ($.fn.mousewheel)
 			{
-
-
-				//	DEPRECATED
-				if (opts.prev.mousewheel)
-				{
-					deprecated('The prev.mousewheel option', 'the mousewheel configuration object');
-					opts.prev.mousewheel = null;
-					opts.mousewheel = {
-						items: bt_mousesheelNumber(opts.prev.mousewheel)
-					};
-				}
-				if (opts.next.mousewheel)
-				{
-					deprecated('The next.mousewheel option', 'the mousewheel configuration object');
-					opts.next.mousewheel = null;
-					opts.mousewheel = {
-						items: bt_mousesheelNumber(opts.next.mousewheel)
-					};
-				}
-				//	/DEPRECATED
-
 
 				if (opts.mousewheel)
 				{
@@ -2574,7 +2525,7 @@
 		};	//	/bind_buttons
 
 
-		$cfs._cfs_unbind_buttons = function() {
+		FN._unbind_buttons = function() {
 			var ns1 = cf_e('', conf),
 				ns2 = cf_e('', conf, false);
 				ns3 = cf_e('', conf, false, true, true);
@@ -2663,19 +2614,22 @@
 			queu = [],
 			conf = $.extend(true, {}, $.fn.carouFredSel.configs, configs),
 			opts = {},
-			opts_orig = $.extend(true, {}, options), 
-			$wrp = $cfs.wrap('<'+conf.wrapper.element+' class="'+conf.wrapper.classname+'" />').parent();
+			opts_orig = $.extend(true, {}, options),
+			$wrp = (conf.wrapper == 'parent')
+				? $cfs.parent()
+				: $cfs.wrap('<'+conf.wrapper.element+' class="'+conf.wrapper.classname+'" />').parent();
 
 
 		conf.selector		= $cfs.selector;
 		conf.serialNumber	= $.fn.carouFredSel.serialNumber++;
 
+		conf.transition = (conf.transition && $.fn.transition) ? 'transition' : 'animate';
 
 		//	create carousel
-		$cfs._cfs_init(opts_orig, true, starting_position);
-		$cfs._cfs_build();
-		$cfs._cfs_bind_events();
-		$cfs._cfs_bind_buttons();
+		FN._init(opts_orig, true, starting_position);
+		FN._build();
+		FN._bind_events();
+		FN._bind_buttons();
 
 		//	find item to start
 		if (is_array(opts.items.start))
@@ -2769,6 +2723,7 @@
 	};
 	$.fn.carouFredSel.configs = {
 		'debug'			: false,
+		'transition'	: false,
 		'onWindowResize': 'throttle',
 		'events'		: {
 			'prefix'		: '',
@@ -2824,7 +2779,14 @@
 	//	GLOBAL PRIVATE
 
 	//	scrolling functions
-	function sc_setScroll(d, e) {
+	function sc_setScroll(d, e, c) {
+		if (c.transition == 'transition')
+		{
+			if (e == 'swing')
+			{
+				e = 'ease';
+			}
+		}
 		return {
 			anims: [],
 			duration: d,
@@ -2833,12 +2795,7 @@
 			startTime: getTime()
 		};
 	}
-	function sc_startScroll(s) {
-
-		if (is_object(s.pre))
-		{
-			sc_startScroll(s.pre);
-		}
+	function sc_startScroll(s, c) {
 		for (var a = 0, l = s.anims.length; a < l; a++)
 		{
 			var b = s.anims[a];
@@ -2846,19 +2803,7 @@
 			{
 				continue;
 			}
-			if (b[3])
-			{
-				b[0].stop();
-			}
-			b[0].animate(b[1], {
-				complete: b[2],
-				duration: s.duration,
-				easing: s.easing
-			});
-		}
-		if (is_object(s.post))
-		{
-			sc_startScroll(s.post);
+			b[0][c.transition](b[1], s.duration, s.easing, b[2]);
 		}
 	}
 	function sc_stopScroll(s, finish) {
@@ -2899,6 +2844,7 @@
 			case 'crossfade':
 			case 'cover-fade':
 			case 'uncover-fade':
+				$c.css('opacity', 1);
 				$c.css('filter', '');
 				break;
 		}
@@ -2962,11 +2908,7 @@
 			'items': {
 				'old': i_old,
 				'skipped': i_skp,
-				'visible': i_new,
-
-				//	DEPRECATED
-				'new': i_new
-				//	/DEPRECATED
+				'visible': i_new
 			},
 			'scroll': {
 				'items': s_itm,
@@ -3607,15 +3549,17 @@
 			});
 		}
 	}
-	function sz_storeSizes(i, o) {
-		if (o.responsive)
-		{
-			i.each(function() {
-				var j = $(this),
-					s = in_mapCss(j, ['width', 'height']);
-				j.data('_cfs_origCssSizes', s);
-			});
-		}
+	function sz_storeOrigCss(i) {
+		i.each(function() {
+			var j = $(this);
+			j.data('_cfs_origCss', j.attr('style') || '');
+		});
+	}
+	function sz_restoreOrigCss(i) {
+		i.each(function() {
+			var j = $(this);
+			j.attr('style', j.data('_cfs_origCss') || '');
+		});
 	}
 	function sz_setResponsiveSizes(o, all) {
 		var visb = o.items.visible,
@@ -4038,11 +3982,10 @@
 
 	//	init function
 	function in_mapCss($elem, props) {
-		var css = {}, prop;
+		var css = {};
 		for (var p = 0, l = props.length; p < l; p++)
 		{
-			prop = props[p];
-			css[prop] = $elem.css(prop);
+			css[props[p]] = $elem.css(props[p]);
 		}
 		return css;
 	}
@@ -4229,7 +4172,7 @@
 		return (a instanceof jQuery);
 	}
 	function is_object(a) {
-		return ((a instanceof Object || typeof a == 'object') && !is_null(a) && !is_jquery(a) && !is_array(a));
+		return ((a instanceof Object || typeof a == 'object') && !is_null(a) && !is_jquery(a) && !is_array(a) && !is_function(a));
 	}
 	function is_number(a) {
 		return ((a instanceof Number || typeof a == 'number') && !isNaN(a));
@@ -4262,31 +4205,30 @@
 		debug(true, o+' is DEPRECATED, support for it will be removed. Use '+n+' instead.');
 	}
 	function debug(d, m) {
-		if (is_object(d))
+		if (!is_undefined(window.console) && !is_undefined(window.console.log))
 		{
-			var s = ' ('+d.selector+')';
-			d = d.debug;
-		}
-		else
-		{
-			var s = '';
-		}
-		if (!d)
-		{
-			return false;
-		}
-
-		if (is_string(m))
-		{
-			m = 'carouFredSel'+s+': ' + m;
-		}
-		else
-		{
-			m = ['carouFredSel'+s+':', m];
-		}
-
-		if (window.console && window.console.log)
-		{
+			if (is_object(d))
+			{
+				var s = ' ('+d.selector+')';
+				d = d.debug;
+			}
+			else
+			{
+				var s = '';
+			}
+			if (!d)
+			{
+				return false;
+			}
+	
+			if (is_string(m))
+			{
+				m = 'carouFredSel'+s+': ' + m;
+			}
+			else
+			{
+				m = ['carouFredSel'+s+':', m];
+			}
 			window.console.log(m);
 		}
 		return false;
@@ -4295,7 +4237,6 @@
 
 
 	//	EASING FUNCTIONS
-
 	$.extend($.easing, {
 		'quadratic': function(t) {
 			var t2 = t * t;
@@ -4312,6 +4253,31 @@
 
 
 })(jQuery);
+
+
+/*!
+ * jQuery Transit - CSS3 transitions and transformations
+ * (c) 2011-2012 Rico Sta. Cruz <rico@ricostacruz.com>
+ * MIT Licensed.
+ *
+ * http://ricostacruz.com/jquery.transit
+ * http://github.com/rstacruz/jquery.transit
+ */
+(function(d){function m(a){if(a in j.style)return a;var b=["Moz","Webkit","O","ms"],c=a.charAt(0).toUpperCase()+a.substr(1);if(a in j.style)return a;for(a=0;a<b.length;++a){var d=b[a]+c;if(d in j.style)return d}}function l(a){"string"===typeof a&&this.parse(a);return this}function q(a,b,c,e){var h=[];d.each(a,function(a){a=d.camelCase(a);a=d.transit.propertyMap[a]||d.cssProps[a]||a;a=a.replace(/([A-Z])/g,function(a){return"-"+a.toLowerCase()});-1===d.inArray(a,h)&&h.push(a)});d.cssEase[c]&&(c=d.cssEase[c]);
+var f=""+n(b)+" "+c;0<parseInt(e,10)&&(f+=" "+n(e));var g=[];d.each(h,function(a,b){g.push(b+" "+f)});return g.join(", ")}function f(a,b){b||(d.cssNumber[a]=!0);d.transit.propertyMap[a]=e.transform;d.cssHooks[a]={get:function(b){return d(b).css("transit:transform").get(a)},set:function(b,e){var h=d(b).css("transit:transform");h.setFromString(a,e);d(b).css({"transit:transform":h})}}}function g(a,b){return"string"===typeof a&&!a.match(/^[\-0-9\.]+$/)?a:""+a+b}function n(a){d.fx.speeds[a]&&(a=d.fx.speeds[a]);
+return g(a,"ms")}d.transit={version:"0.9.9",propertyMap:{marginLeft:"margin",marginRight:"margin",marginBottom:"margin",marginTop:"margin",paddingLeft:"padding",paddingRight:"padding",paddingBottom:"padding",paddingTop:"padding"},enabled:!0,useTransitionEnd:!1};var j=document.createElement("div"),e={},r=-1<navigator.userAgent.toLowerCase().indexOf("chrome");e.transition=m("transition");e.transitionDelay=m("transitionDelay");e.transform=m("transform");e.transformOrigin=m("transformOrigin");j.style[e.transform]=
+"";j.style[e.transform]="rotateY(90deg)";e.transform3d=""!==j.style[e.transform];var p=e.transitionEnd={transition:"transitionEnd",MozTransition:"transitionend",OTransition:"oTransitionEnd",WebkitTransition:"webkitTransitionEnd",msTransition:"MSTransitionEnd"}[e.transition]||null,k;for(k in e)e.hasOwnProperty(k)&&"undefined"===typeof d.support[k]&&(d.support[k]=e[k]);j=null;d.cssEase={_default:"ease","in":"ease-in",out:"ease-out","in-out":"ease-in-out",snap:"cubic-bezier(0,1,.5,1)",easeOutCubic:"cubic-bezier(.215,.61,.355,1)",
+easeInOutCubic:"cubic-bezier(.645,.045,.355,1)",easeInCirc:"cubic-bezier(.6,.04,.98,.335)",easeOutCirc:"cubic-bezier(.075,.82,.165,1)",easeInOutCirc:"cubic-bezier(.785,.135,.15,.86)",easeInExpo:"cubic-bezier(.95,.05,.795,.035)",easeOutExpo:"cubic-bezier(.19,1,.22,1)",easeInOutExpo:"cubic-bezier(1,0,0,1)",easeInQuad:"cubic-bezier(.55,.085,.68,.53)",easeOutQuad:"cubic-bezier(.25,.46,.45,.94)",easeInOutQuad:"cubic-bezier(.455,.03,.515,.955)",easeInQuart:"cubic-bezier(.895,.03,.685,.22)",easeOutQuart:"cubic-bezier(.165,.84,.44,1)",
+easeInOutQuart:"cubic-bezier(.77,0,.175,1)",easeInQuint:"cubic-bezier(.755,.05,.855,.06)",easeOutQuint:"cubic-bezier(.23,1,.32,1)",easeInOutQuint:"cubic-bezier(.86,0,.07,1)",easeInSine:"cubic-bezier(.47,0,.745,.715)",easeOutSine:"cubic-bezier(.39,.575,.565,1)",easeInOutSine:"cubic-bezier(.445,.05,.55,.95)",easeInBack:"cubic-bezier(.6,-.28,.735,.045)",easeOutBack:"cubic-bezier(.175, .885,.32,1.275)",easeInOutBack:"cubic-bezier(.68,-.55,.265,1.55)"};d.cssHooks["transit:transform"]={get:function(a){return d(a).data("transform")||
+new l},set:function(a,b){var c=b;c instanceof l||(c=new l(c));a.style[e.transform]="WebkitTransform"===e.transform&&!r?c.toString(!0):c.toString();d(a).data("transform",c)}};d.cssHooks.transform={set:d.cssHooks["transit:transform"].set};"1.8">d.fn.jquery&&(d.cssHooks.transformOrigin={get:function(a){return a.style[e.transformOrigin]},set:function(a,b){a.style[e.transformOrigin]=b}},d.cssHooks.transition={get:function(a){return a.style[e.transition]},set:function(a,b){a.style[e.transition]=b}});f("scale");
+f("translate");f("rotate");f("rotateX");f("rotateY");f("rotate3d");f("perspective");f("skewX");f("skewY");f("x",!0);f("y",!0);l.prototype={setFromString:function(a,b){var c="string"===typeof b?b.split(","):b.constructor===Array?b:[b];c.unshift(a);l.prototype.set.apply(this,c)},set:function(a){var b=Array.prototype.slice.apply(arguments,[1]);this.setter[a]?this.setter[a].apply(this,b):this[a]=b.join(",")},get:function(a){return this.getter[a]?this.getter[a].apply(this):this[a]||0},setter:{rotate:function(a){this.rotate=
+g(a,"deg")},rotateX:function(a){this.rotateX=g(a,"deg")},rotateY:function(a){this.rotateY=g(a,"deg")},scale:function(a,b){void 0===b&&(b=a);this.scale=a+","+b},skewX:function(a){this.skewX=g(a,"deg")},skewY:function(a){this.skewY=g(a,"deg")},perspective:function(a){this.perspective=g(a,"px")},x:function(a){this.set("translate",a,null)},y:function(a){this.set("translate",null,a)},translate:function(a,b){void 0===this._translateX&&(this._translateX=0);void 0===this._translateY&&(this._translateY=0);
+null!==a&&void 0!==a&&(this._translateX=g(a,"px"));null!==b&&void 0!==b&&(this._translateY=g(b,"px"));this.translate=this._translateX+","+this._translateY}},getter:{x:function(){return this._translateX||0},y:function(){return this._translateY||0},scale:function(){var a=(this.scale||"1,1").split(",");a[0]&&(a[0]=parseFloat(a[0]));a[1]&&(a[1]=parseFloat(a[1]));return a[0]===a[1]?a[0]:a},rotate3d:function(){for(var a=(this.rotate3d||"0,0,0,0deg").split(","),b=0;3>=b;++b)a[b]&&(a[b]=parseFloat(a[b]));
+a[3]&&(a[3]=g(a[3],"deg"));return a}},parse:function(a){var b=this;a.replace(/([a-zA-Z0-9]+)\((.*?)\)/g,function(a,d,e){b.setFromString(d,e)})},toString:function(a){var b=[],c;for(c in this)if(this.hasOwnProperty(c)&&(e.transform3d||!("rotateX"===c||"rotateY"===c||"perspective"===c||"transformOrigin"===c)))"_"!==c[0]&&(a&&"scale"===c?b.push(c+"3d("+this[c]+",1)"):a&&"translate"===c?b.push(c+"3d("+this[c]+",0)"):b.push(c+"("+this[c]+")"));return b.join(" ")}};d.fn.transition=d.fn.transit=function(a,
+b,c,f){var h=this,g=0,j=!0;"function"===typeof b&&(f=b,b=void 0);"function"===typeof c&&(f=c,c=void 0);"undefined"!==typeof a.easing&&(c=a.easing,delete a.easing);"undefined"!==typeof a.duration&&(b=a.duration,delete a.duration);"undefined"!==typeof a.complete&&(f=a.complete,delete a.complete);"undefined"!==typeof a.queue&&(j=a.queue,delete a.queue);"undefined"!==typeof a.delay&&(g=a.delay,delete a.delay);"undefined"===typeof b&&(b=d.fx.speeds._default);"undefined"===typeof c&&(c=d.cssEase._default);
+b=n(b);var l=q(a,b,c,g),k=d.transit.enabled&&e.transition?parseInt(b,10)+parseInt(g,10):0;if(0===k)return b=j,c=function(b){h.css(a);f&&f.apply(h);b&&b()},!0===b?h.queue(c):b?h.queue(b,c):c(),h;var m={};b=j;c=function(b){this.offsetWidth;var c=!1,g=function(){c&&h.unbind(p,g);0<k&&h.each(function(){this.style[e.transition]=m[this]||null});"function"===typeof f&&f.apply(h);"function"===typeof b&&b()};0<k&&p&&d.transit.useTransitionEnd?(c=!0,h.bind(p,g)):window.setTimeout(g,k);h.each(function(){0<k&&
+(this.style[e.transition]=l);d(this).css(a)})};!0===b?h.queue(c):b?h.queue(b,c):c();return this};d.transit.getTransitionValue=q})(jQuery);
+
 
 
 
@@ -4428,7 +4394,7 @@ $.slidewizard.prototype = {
 		var _this = this;
 
 		$(window).bind('load', function(){
-			_this.$element.carouFredSel( _this._options() );
+			_this.$element.carouFredSel( _this._options(), { transition: true });
 		});
 	}
 }
