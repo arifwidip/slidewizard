@@ -1,0 +1,162 @@
+/**
+ * Themes: Rounded
+ * Version: 1.0
+ * Author: ColorLabs & Company
+ *
+ * Rounded one image slider with animated rounded thumbnails
+ * 
+ */
+
+.themes-rounded {
+  margin-left: auto;
+  margin-right: auto;
+}
+.themes-rounded img {
+  max-width: 135%;
+  float: left;
+  opacity: 0;
+}
+.themes-rounded .slide-image,
+.slider-rounded-pager a {
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+.themes-rounded .slidewizard-slide-item {
+  float: left;
+}
+.themes-rounded .slide-date {
+  display: block;
+  color: #999;
+}
+
+.slider-rounded-wrapper,
+.slider-rounded-border {
+  overflow: hidden;
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  -webkit-border-radius: 200px;
+     -moz-border-radius: 200px;
+          border-radius: 200px;
+  -webkit-box-sizing: content-box;
+     -moz-box-sizing: content-box;
+          box-sizing: content-box;
+}
+.slider-rounded-border {
+  z-index: 10;
+  border: 25px solid #eee;
+  margin: 0 0 0 -150px; 
+}
+
+.slider-rounded-wrapper {
+  border: 10px solid #eee;
+  margin: 15px 0 0 -135px;
+  z-index: 20;
+}
+
+.slider-rounded-pager {
+  width: 300px;
+  margin: -70px 0 0 -150px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 10;
+}
+.slider-rounded-pager a {
+  border: 5px solid #eee;
+  overflow: hidden;
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin: 0 0 0 -30px;
+  position: absolute;
+  left: 50%;
+  -webkit-border-radius: 30px;
+     -moz-border-radius: 30px;
+          border-radius: 30px;
+  -webkit-box-sizing: content-box;
+     -moz-box-sizing: content-box;
+          box-sizing: content-box;
+  -webkit-transition: margin 0.5s ease;
+     -moz-transition: margin 0.5s ease;
+          transition: margin 0.5s ease;
+}
+.slider-rounded-pager img {
+  width: auto;
+}
+
+.slider-rounded-pager a.thumb1 {
+  top: 45px;
+  margin-left: -150px;
+}
+.slider-rounded-pager a.thumb1.selected {
+  margin-top: -20px;
+  margin-left: -115px;
+}
+.slider-rounded-pager a.thumb2 {
+  top: 90px;
+  margin-left: -98px;
+}
+.slider-rounded-pager a.thumb2.selected {
+  margin-top: -35px;
+  margin-left: -85px;
+}
+.slider-rounded-pager a.thumb3 {
+  top: 110px;
+}
+.slider-rounded-pager a.thumb3.selected {
+  margin-top: -40px;
+}
+.slider-rounded-pager a.thumb4 {
+  top: 90px;
+  margin-left: 38px;
+}
+.slider-rounded-pager a.thumb4.selected {
+  margin-top: -35px;
+  margin-left: 25px;
+}
+.slider-rounded-pager a.thumb5 {
+  top: 45px;
+  margin-left: 90px;
+}
+.slider-rounded-pager a.thumb5.selected {
+  margin-top: -20px;
+  margin-left: 55px;
+}
+
+.slider-rounded-desc {
+  position: absolute;
+  top: 350px;
+  text-align: center;
+  left: 0;
+  right: 0;
+}
+.slider-rounded-desc .slide-title {
+  margin-bottom: 10px;
+}
+
+
+/* Dribbble 
+---------------------------- */
+.themes-rounded .dribbble-like-count,
+.themes-rounded .dribbble-rebound-count,
+.themes-rounded .dribbble-views-count {
+  background: #333 url("images/dribbble-sprites.png") no-repeat 3px 4px;
+  padding: 3px 3px 3px 20px;
+  margin: 0 10px;
+  color: #eee;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.themes-rounded .dribbble-rebound-count {
+  background-position: 3px -39px;
+}
+.themes-rounded .dribbble-views-count {
+  background-position: 3px -18px;
+}
+.themes-rounded.slidewizard-source-dribble .slide-date {
+  margin-top: 10px
+}
