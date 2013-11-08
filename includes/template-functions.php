@@ -209,8 +209,8 @@ if( !function_exists( 'slidewizard_render_input_single' ) ) {
     $attr = '';
     $class = '';
 
-    // If value not stored, get value from default option
-    $stored_value = ( !empty($stored_options[$id]) ) ? $stored_options[$id] : $option['default'];
+    // $stored_value = ( !empty($stored_options[$id]) ) ? $stored_options[$id] : $option['default'];
+    $stored_value = $stored_options[$id];
 
     // If attributes defined
     if( isset($option['attr']) && $option['attr'] ) {
@@ -259,6 +259,12 @@ if( !function_exists( 'slidewizard_render_input_single' ) ) {
 
         if( isset( $option['value'] ) ) {
           foreach( $option['value'] as $radio_key => $radio_val ) {
+            if( 'boolean' == $option['datatype'] ) {
+              if( $radio_val === false ) {
+                $radio_val = 0;
+              }
+            }
+
             $is_current = ( $radio_val == $stored_value ) ? 'active' : '';
             $output .= '<button type="button" '. $data_attr .' data-value="'. $radio_val .'" class="btn '. $is_current .'">'. $radio_key .'</button>';
           }
@@ -268,6 +274,12 @@ if( !function_exists( 'slidewizard_render_input_single' ) ) {
         // Regular radio input
         if( isset( $option['value'] ) ) {
           foreach( $option['value'] as $radio_key => $radio_val ) {
+            if( 'boolean' == $option['datatype'] ) {
+              if( $radio_val === false ) {
+                $radio_val = 0;
+              }
+            }
+
             $is_current = ( $radio_val == $stored_value ) ? 'checked' : '';
             $output .= '<label class="radio inline">';
             $output .= $radio_key;
