@@ -384,7 +384,13 @@ class Slides {
       $post_args['post_parent'] = $data['post_parent'];
 
     // Save the SlideWizard post type
-    wp_update_post( $post_args );
+    $slide_id = wp_update_post( $post_args );
+
+    // If Failed to save the Slider
+    if( !$slide_id ) {
+      unset( $post_args['ID'] );
+      $slide_id = wp_insert_post( $post_args );
+    }
 
     // Save the content source
     $sources = $this->get_sources( $slide_id );
