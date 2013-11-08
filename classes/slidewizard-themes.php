@@ -191,6 +191,9 @@ class SlideWizardThemes {
 
     $themes = $this->get( $slidewizard['themes'] );
     $source = $slidewizard['source'][0];
+    $slides = new Slides();
+
+    $slide_item['dimensions'] = $slides->get_dimensions( $slidewizard );
 
     if( isset( $slide_item['created_at'] ) && !empty( $slide_item['created_at'] ) ) {
       $slide_item['created_at'] = is_numeric( $slide_item['created_at'] ) ? $slide_item['created_at'] : strtotime( $slide_item['created_at'] );
