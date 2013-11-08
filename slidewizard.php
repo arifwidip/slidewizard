@@ -210,6 +210,7 @@ class SlideWizard {
     add_action( "wp_ajax_{$this->namespace}_delete-slide", array( &$this, 'ajax_delete_slide' ) );
     add_action( "wp_ajax_{$this->namespace}_preview-iframe", array( &$this, 'ajax_preview_iframe' ) );
     add_action( "wp_ajax_{$this->namespace}_preview-iframe-update", array( &$this, 'ajax_preview_iframe_update' ) );
+    add_action( "wp_ajax_{$this->namespace}_get_theme_options", array( &$this, 'ajax_get_theme_options' ) );
     add_action( "wp_ajax_{$this->namespace}_insert-iframe", array( &$this, 'ajax_insert_iframe' ) );
 
     // Front-end only actions
@@ -736,6 +737,20 @@ class SlideWizard {
     exit;
   }
 
+
+  /**
+   * Ajax action for receiving options for specific SlideWizard Themes
+   */
+  function ajax_get_theme_options() {
+    $slide_id = intval( $_REQUEST['id'] );
+    $slidewizard = $this->Slides->save_preview( $slide_id, $_REQUEST );
+    $sizes = apply_filters( "{$this->namespace}_sizes", $this->sizes, $slidewizard );
+    $themes = $this->get_slidewizard_themes( $slidewizard );
+    $options = $this->get_options( $slidewizard );
+
+    include( SLIDEWIZARD_PLUGIN_DIR . "/views/partials/_options.php" );
+    exit;
+  }
 
 
   /**
