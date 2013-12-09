@@ -2,8 +2,7 @@
  * Script for handling Preview update for SlideWizard
  * 
  */
-
-(function($){
+(function ($) { 
 window.SlideWizardPreview = {
   $el: {},
   outerWidth: 0,
@@ -120,7 +119,7 @@ window.SlideWizardPreview = {
 
       this.$el.iframeBody.find('.overlay-loader').removeClass('loading');
 
-      this.$el.slidewizard.find('.slidewizard-slide-item a').click(function(event){
+      this.$el.slidewizard.find('.slidewizard-slide-item a[href]').click(function(event){
         event.preventDefault();
         return false;
       }).attr('title', 'Links disabled for preview');

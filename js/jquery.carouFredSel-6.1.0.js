@@ -4291,6 +4291,7 @@ $.slidewizard = function( options, element ) {
 	this.options = options;
 	this.$element = $(element);
 	this._init();
+	this._afterInit();
 }
 
 $.slidewizard.prototype = {
@@ -4391,11 +4392,63 @@ $.slidewizard.prototype = {
 	 * Initialize plugin
 	 */
 	_init: function() {
-		var _this = this;
+		var _this = this,
+				opts = this._options();
 
 		$(window).bind('load', function(){
 			_this.$element.carouFredSel( _this._options(), { transition: true });
+
+			if( _this.options.theme && _this['_init_' + _this.options.theme] !== undefined ) {
+				_this['_init_'+_this.options.theme].call(_this, opts, _this.$element);
+			}
 		});
+	},
+
+	/**
+	 * Initiate function after initialization
+	 */
+	_afterInit: function() {
+		var _this = this;
+		this.players = {};
+		this.youtube_api_loaded = false;
+		this.isYoutube = this.$element.parent().hasClass('slidewizard-source-youtube');
+
+		// Initiate Youtube if Slider with Youtube video exists
+		if( this.isYoutube ) {
+			this._load_youtube_api();
+
+			// Create Players Object on youtube api ready
+			window.onYouTubeIframeAPIReady = function() {
+				_this.$element.find('iframe').each(function(){
+					var $iframe = $(this),
+							iframe_id = $iframe.attr('id');
+
+					if( typeof _this.players[ iframe_id ] == "undefined" ) {
+						_this.players[ iframe_id ] = new YT.Player( iframe_id, {});
+					}
+				});
+			}
+		}
+
+		// Create a hooks
+		if( _this.options.theme && _this['_afterInit_' + _this.options.theme] !== undefined ) {
+			_this['_afterInit_'+_this.options.theme].call(_this);
+		}
+	},
+
+	/**
+	 * Load YouTube Scripts
+	 */
+	_load_youtube_api: function() {
+		if( !this.youtube_api_loaded ) {
+			// Load the IFrame Player API code asynchronously.
+			var tag = document.createElement('script');
+		      tag.src = "https://www.youtube.com/iframe_api";
+	    var firstScriptTag = document.getElementsByTagName('script')[0];
+		      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+			
+			this.youtube_api_loaded = true;
+		}
 	}
 }
 
