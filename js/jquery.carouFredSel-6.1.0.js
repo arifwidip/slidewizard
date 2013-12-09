@@ -4411,7 +4411,9 @@ $.slidewizard.prototype = {
 		var _this = this;
 		this.players = {};
 		this.youtube_api_loaded = false;
+		this.vimeo_api_loaded = false;
 		this.isYoutube = this.$element.parent().hasClass('slidewizard-source-youtube');
+		this.isVimeo = this.$element.parent().hasClass('slidewizard-source-vimeo');
 
 		// Initiate Youtube if Slider with Youtube video exists
 		if( this.isYoutube ) {
@@ -4430,6 +4432,22 @@ $.slidewizard.prototype = {
 			}
 		}
 
+		// Initiate Vimeo if slider with vimeo video exists
+		if( this.isVimeo ) {
+			this._load_vimeo_script();
+
+			$(window).on('load', function(){
+				_this.$element.find('iframe').each(function(){
+					var $iframe = $(this),
+							iframe_id = $iframe.attr('id');
+
+					if( typeof _this.players[ iframe_id ] == "undefined" ) {
+						_this.players[ iframe_id ] = $f( this );
+					}
+				});
+			});
+		}
+
 		// Create a hooks
 		if( _this.options.theme && _this['_afterInit_' + _this.options.theme] !== undefined ) {
 			_this['_afterInit_'+_this.options.theme].call(_this);
@@ -4444,6 +4462,20 @@ $.slidewizard.prototype = {
 			// Load the IFrame Player API code asynchronously.
 			var tag = document.createElement('script');
 		      tag.src = "https://www.youtube.com/iframe_api";
+	    var firstScriptTag = document.getElementsByTagName('script')[0];
+		      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+			
+			this.youtube_api_loaded = true;
+		}
+	},
+
+	/**
+	 * Load Vimeo Script
+	 */
+	_load_vimeo_script: function() {
+		if( !this.vimeo_api_loaded ) {
+			var tag = document.createElement('script');
+		      tag.src = "http://a.vimeocdn.com/js/froogaloop2.min.js";
 	    var firstScriptTag = document.getElementsByTagName('script')[0];
 		      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 			

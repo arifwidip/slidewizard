@@ -199,21 +199,25 @@
   width: 100%;
 }
 
-/* Youtube
+/* Youtube & Vimeo
 ---------------------------- */
 .themes-default.slidewizard-source-youtube .slide-image img {
   width: 100%;
 }
 .themes-default .youtube-video-cover,
 .themes-default .youtube-video-cover .youtube-video-iframe,
-.themes-default .youtube-video-cover .youtube-video-thumbnail {
+.themes-default .youtube-video-cover .youtube-video-thumbnail,
+.themes-default .vimeo-video-cover,
+.themes-default .vimeo-video-cover .vimeo-video-iframe,
+.themes-default .vimeo-video-cover .vimeo-video-thumbnail {
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
 }
-.themes-default .youtube-video-cover .play-youtube-video {
+.themes-default .youtube-video-cover .play-youtube-video,
+.themes-default .vimeo-video-cover .play-vimeo-video {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -223,19 +227,38 @@
   cursor: pointer;
   margin: -32px 0 0 -32px;
   background: #fff;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
+  opacity: 0.3;
   -webkit-border-radius: 64px;
-  -moz-border-radius: 64px;
-  border-radius: 64px;
+     -moz-border-radius: 64px;
+          border-radius: 64px;
   -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.7), 0 -20px 20px rgba(0,0,0,.2) inset;
-  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.7), 0 -20px 20px rgba(0,0,0,.2) inset;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.7), 0 -20px 20px rgba(0,0,0,.2) inset;
+     -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.7), 0 -20px 20px rgba(0,0,0,.2) inset;
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.7), 0 -20px 20px rgba(0,0,0,.2) inset;
+  -webkit-transition: opacity 0.2s ease;
+     -moz-transition: opacity 0.2s ease;
+      -ms-transition: opacity 0.2s ease;
+       -o-transition: opacity 0.2s ease;
+          transition: opacity 0.2s ease;
 }
-.themes-default .youtube-video-cover .play-youtube-video:before {
+.themes-default .youtube-video-cover .play-youtube-video:before,
+.themes-default .vimeo-video-cover .play-vimeo-video:before {
   content: "";
   width: 100%;
   height: 100%;
   display: block;
   background: url(images/play.png) no-repeat 50% 50%;
+}
+.themes-default .youtube-video-cover .play-youtube-video:hover,
+.themes-default .vimeo-video-cover .play-vimeo-video:hover {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1
+}
+.themes-default.slidewizard-navigation-bottom.slidewizard-source-youtube .slidewizard-navigation,
+.themes-default.slidewizard-navigation-bottom.slidewizard-source-vimeo .slidewizard-navigation {
+  bottom: 50px;
 }
 
 

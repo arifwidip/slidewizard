@@ -163,8 +163,6 @@ class SlideWizardSource_Youtube extends Slides {
       }
     }
 
-    // print_r($slidewizard);
-    // $slides = array();
     return $slides;
   }
 
@@ -204,6 +202,7 @@ class SlideWizardSource_Youtube extends Slides {
 
       // Link target
       $slide_item['target'] = $slidewizard['options']['open_link_in'];
+      $slide_item['content'] = slidewizard_truncate_text( $slide_item['content'], 150 );
 
       $slide['content'] = $SlideWizard->Themes->process_template( $slide_item, $slidewizard );
 
