@@ -4,7 +4,7 @@
     $is_checked = ( $theme['slug'] == $slidewizard['themes'] ) ? 'checked="checked"' : ''; 
   ?>
   
-  <label class="themes <?php echo $is_selected; ?>">
+  <label class="themes <?php echo $is_selected; ?> tooltips" title="<?php echo $theme['meta']['description']; ?>">
     <span class="themes-thumb">
       <img src="<?php echo $theme['thumbnail'];?>" alt="<?php echo $theme['meta']['name']; ?>">
     </span>

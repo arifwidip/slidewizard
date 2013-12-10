@@ -13,8 +13,7 @@ class SlideWizardSource_500px extends Slides {
         "label" => "Photo Resources",
         "type" => "select",
         "value" => array(
-          "Photos" => "photos",
-          "Collections" => "collections"
+          "Photos" => "photos"
         ),
         "datatype" => "string",
         "default" => "photos"
