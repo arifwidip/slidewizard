@@ -71,6 +71,7 @@
   width: 24px;
   height: 24px;
   border: 2px solid #fff;
+  margin: 0;
 }
 .themes-default .slide-author-name,
 .themes-default .slide-date {
@@ -193,7 +194,15 @@
   margin-bottom: 0;
 }
 .themes-default .slide-image {
-  overflow: hidden
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 .themes-default.slidewizard-source-instagram .slide-image img {
   width: 100%;
@@ -261,6 +270,35 @@
   bottom: 50px;
 }
 
+.themes-default .youtube-video-cover .fluid-width-video-wrapper,
+.themes-default .vimeo-video-cover .fluid-width-video-wrapper {
+  position: static;
+}
+
+.themes-default .px500-votes-count,
+.themes-default .px500-fave-count,
+.themes-default .px500-comment-count {
+  position: relative;
+  padding-left: 16px;
+  margin-right: 20px;
+}
+.themes-default .px500-votes-count:before,
+.themes-default .px500-fave-count:before,
+.themes-default .px500-comment-count:before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  left: 0;
+  top: 1px;
+  position: absolute;
+  background: url(images/500px-sprites.png);
+}
+.themes-default .px500-fave-count:before {
+  background-position: -28px 0
+}
+.themes-default .px500-comment-count:before {
+  background-position: -55px 0
+}
 
 /* Navigation
 ------------------------------------------------------------------- */

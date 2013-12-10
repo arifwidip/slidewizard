@@ -160,3 +160,35 @@
 .themes-rounded.slidewizard-source-dribbble .slide-date {
   margin-top: 10px
 }
+
+/* 500px
+---------------------------- */
+.themes-rounded .px500-votes-count,
+.themes-rounded .px500-fave-count,
+.themes-rounded .px500-comment-count {
+  position: relative;
+  margin: 0 10px;
+  background-color: #333;
+  padding: 3px 3px 3px 20px;
+  color: #eee;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.themes-rounded .px500-votes-count:before,
+.themes-rounded .px500-fave-count:before,
+.themes-rounded .px500-comment-count:before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  left: 4px;
+  top: 4px;
+  position: absolute;
+  background: url(images/500px-sprites.png);
+}
+.themes-rounded .px500-fave-count:before {
+  background-position: -28px 0
+}
+.themes-rounded .px500-comment-count:before {
+  background-position: -55px 0
+}

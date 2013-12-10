@@ -52,7 +52,7 @@ class SlideWizardSource_Vimeo extends Slides {
       // Remove unneeded options
       unset( $options['Content']['show_readmore'] );
       unset( $options['Content']['excerpt_length_with_media'] );
-      unset( $options['Content']['excerpt_length_without_media'] );
+      unset( $options['Content']['excerpt_length_no_media'] );
 
       // Set max number of slides
       $options['Setup']['number_of_slides']['options']['max'] = 20;

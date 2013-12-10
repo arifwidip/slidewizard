@@ -456,6 +456,11 @@ background-position: 0 15px;
 .slidewizard-source-config .options-list {
   margin-bottom: 0;
 }
+.slidewizard-source-config .options-list input[type="text"],
+.slidewizard-source-config .options-list select {
+  width: 100%;
+}
+
 
 
 /* SlideWizard Modal

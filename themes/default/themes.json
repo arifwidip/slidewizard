@@ -1,6 +1,6 @@
 {
   "name": "Default",
-  "sources": ["posts", "twitter", "dribbble", "flickr", "feed", "instagram", "youtube", "vimeo"],
+  "sources": ["posts", "twitter", "dribbble", "flickr", "feed", "instagram", "youtube", "vimeo", "500px"],
   "version": "1.0",
   "description": "Default SlideWizard Themes",
   "sizes": {

@@ -1,6 +1,6 @@
 {
   "name": "Rounded Slider",
-  "sources": ["dribbble", "flickr", "instagram"],
+  "sources": ["dribbble", "flickr", "instagram", "500px"],
   "version": "1.0",
   "description": "Rounded one image slider with animated rounded thumbnails"
 }

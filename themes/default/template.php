@@ -1,10 +1,8 @@
 <?php $target = ( $target != 'same_window' ) ? '_blank' : ''; ?>
 
-<div class="slide-image">
-  <?php if( isset($image) && $image ) : ?>
-    <img src="<?php echo $image; ?>">
-  <?php endif; ?>
-</div>
+<?php if( isset($image) && $image ) : ?>
+<div class="slide-image" style="background-image: url(<?php echo $image; ?>);"></div>
+<?php endif; ?> 
 
 <div class="slide-description-wrapper">
   
