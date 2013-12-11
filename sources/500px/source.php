@@ -235,9 +235,12 @@ class SlideWizardSource_500px extends Slides {
 
       $slide = array_merge( $this->slide_item_prop, $slide );
 
+      $slide['classes'][] = "has-image";
+
       // Link target
       $slide_item['target'] = $slidewizard['options']['open_link_in'];
 
+      $slide['thumbnail'] = $slide_item['image'];
       $slide['content'] = $SlideWizard->Themes->process_template( $slide_item, $slidewizard );
 
       $slides[] = $slide;

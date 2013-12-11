@@ -240,6 +240,7 @@ class SlideWizardSource_Instagram extends Slides {
       // Link target
       $slide_item['target'] = $slidewizard['options']['open_link_in'];
 
+      $slide['thumbnail'] = $slide_item['image'];
       $slide['content'] = $SlideWizard->Themes->process_template( $slide_item, $slidewizard );
 
       $slides[] = $slide;

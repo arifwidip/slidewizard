@@ -31,22 +31,26 @@ class SlideWizardThemes_Thumbnail extends SlideWizardThemes_Helper {
    * Slide Navigation thumbnail
    */
   function render_slide_nav( $nav, $slides, $slidewizard ) {
+    $counter = 0;
+
+    $nav .= '<div class="slidewizard-nav-inner">';
     foreach( $slides as $slide ) {
       $img_style = '';
       if( $slide['thumbnail'] ) {
         $img_style = 'background-image: url('. $slide['thumbnail'] .')';
       }
 
-      $nav .= '<a href="" class="slidewizard-nav-item">';
+      $nav .= '<a href="" class="slidewizard-nav-item" data-index="'. $counter .'">';
         $nav .= '<div class="slidewizard-nav-item-img" style="'. $img_style .'">';
-
-          // if( $slide['thumbnail'] ) {
-          //   $nav .= '<img src="'. $slide['thumbnail'] .'">';
-          // }
-
         $nav .= '</div>';
       $nav .= '</a>';
+
+      $counter++;
     }
+    $nav .= '</div>';
+
+    $nav .= '<a class="slidewizard-thumb-nav thumb-prev">&lsaquo;</a>';
+    $nav .= '<a class="slidewizard-thumb-nav thumb-next">&rsaquo;</a>';
 
     return $nav;
   }
