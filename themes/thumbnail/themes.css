@@ -1,0 +1,179 @@
+/**
+ * Themes: Thumbnail
+ * Version: 1.0
+ * Author: ColorLabs & Company
+ *
+ * Slider with thumbnail navigation
+ * 
+ */
+
+.themes-thumbnail {
+  position: relative;
+  overflow: hidden;
+  border: 2px solid #333;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.themes-thumbnail img {
+  max-width: 100%;
+  height: auto;
+}
+
+.themes-thumbnail .slidewizard-slide-item {
+  float: left;
+}
+
+.themes-thumbnail .slide-description-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+}
+
+.themes-thumbnail .no-image {
+  background: #000;
+  display: table;
+}
+.themes-thumbnail .no-image .slide-description-wrapper {
+  position: static;
+  text-align: center;
+  padding-left: 50px;
+  padding-right: 50px;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+/* Content
+------------------------------------------------------------------- */
+.themes-thumbnail .slide-title {
+  font-size: 22px;
+  line-height: 1.2;
+  display: none;
+  margin-bottom: 10px;
+  padding: 7px 10px;
+  position: relative;
+  background: #333;
+  background: rgba(0,0,0,.7)
+}
+.themes-thumbnail .slide-meta {
+  overflow: hidden;
+  font-size: 13px;
+  display: none;
+}
+.themes-thumbnail .slide-description {
+  margin-top: 10px;
+}
+.themes-thumbnail .slide-meta img {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #fff;
+  margin: 0;
+  vertical-align: middle;
+}
+.themes-thumbnail .slide-author-name,
+.themes-thumbnail .slide-date {
+  margin-left: 8px;
+}
+.themes-thumbnail .slide-date {
+  font-style: italic;
+}
+.themes-thumbnail .slide-description,
+.themes-thumbnail .slide-more-link {
+  display: none;
+}
+.themes-thumbnail.slidewizard-show-title .slide-title {
+  display: inline-block;
+}
+.themes-thumbnail.slidewizard-show-avatar .slide-meta,
+.themes-thumbnail.slidewizard-show-excerpt .slide-description {
+  display: block;
+}
+.themes-thumbnail.slidewizard-show-readmore .slide-more-link {
+  display: inline;
+}
+
+.themes-thumbnail .slide-description-content {
+  position: relative;
+}
+.themes-thumbnail .has-image .slide-description-content {
+  background: #333;
+  background: rgba(0,0,0,.7);
+  padding: 10px;
+  max-width: 300px;
+  font-size: 13px;
+  line-height: 18px;
+}
+.themes-thumbnail .no-image .slide-description {
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Navigation
+------------------------------------------------------------------- */
+.themes-thumbnail .slidewizard-navigation {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+}
+.themes-thumbnail .slidewizard-nav-item {
+  float: left;
+  margin: 5px;
+}
+.themes-thumbnail .slidewizard-nav-item .slidewizard-nav-item-img {
+  width: 40px;
+  height: 40px;
+  background: #09c;
+  border: 3px solid #333;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.themes-thumbnail .slidewizard-nav-item.selected .slidewizard-nav-item-img {
+  border-color: #fff;
+}
+.themes-thumbnail .slidewizard-nav-item,
+.themes-thumbnail .slidewizard-nav-item img {
+  display: block
+}
+
+/* Slide Image
+------------------------------------------------------------------- */
+.themes-thumbnail .slide-image {
+  width: 100%;
+  height: 100%
+}
+.themes-thumbnail .slide-image:before {
+  content: "";
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=45);
+  opacity: 0.45;
+  background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, rgba(0, 0, 0, 0.45)), color-stop(100%, rgba(255, 255, 255, 0.45)));
+  background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.45), rgba(255, 255, 255, 0.45));
+  background-image: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0.45), rgba(255, 255, 255, 0.45));
+  background-image: linear-gradient(bottom, rgba(0, 0, 0, 0.45), rgba(255, 255, 255, 0.45));
+}
+.themes-thumbnail .slide-image:after {
+  left: 3px;
+  right: 2px;
+  top: 3px;
+  bottom: 0;
+  position: absolute;
+  content: "";
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=35);
+  opacity: 0.35;
+  background-image: -webkit-linear-gradient(-71deg, transparent, rgba(255, 255, 255, 0.65) 50%, transparent 50%);
+  background-image: -moz-linear-gradient(-71deg, transparent, rgba(255, 255, 255, 0.65) 50%, transparent 50%);
+  background-image: linear-gradient(-71deg, transparent, rgba(255, 255, 255, 0.65) 50%, transparent 50%);
+  background-repeat: no-repeat; 
+}

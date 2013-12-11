@@ -174,7 +174,7 @@ class SlideWizardSource_Posts extends Slides {
    * @param array $slidewizard The SlideWizard data
    * 
    */
-  function get_image( $slide, $slidewizard, $source = null, $tried_sources = array() ) {
+  function get_image( $slide, $slidewizard, $is_thumbail = false, $source = null, $tried_sources = array() ) {
     global $SlideWizard;
 
     // Get with and height of the slide
@@ -183,6 +183,10 @@ class SlideWizardSource_Posts extends Slides {
     $outer_width = $slide_dimensions['outer_width'];
     $outer_height = $slide_dimensions['outer_height'];
     $image_size = array( $outer_width, $outer_height );
+
+    if( $is_thumbail ) {
+      $image_size = array( 80, 80 );
+    }
 
     // Set default return value
     $image_src = false;
@@ -244,7 +248,7 @@ class SlideWizardSource_Posts extends Slides {
           }
         }
         if( $next_source ) {
-          $image_src = $this->get_image( $slide, $slidewizard, $next_source, $tried_sources );
+          $image_src = $this->get_image( $slide, $slidewizard, $is_thumbail, $next_source, $tried_sources );
         }
       }
     }
@@ -321,6 +325,7 @@ class SlideWizardSource_Posts extends Slides {
       $slide_item['target'] = $slidewizard['options']['open_link_in'];
 
       // Set image
+      if( $has_image ) $slide['thumbnail'] = $this->get_image( $slide_item, $slidewizard, true, 'featured' );
       if( $has_image ) $slide_item['image'] = $has_image;
 
       $slide['content'] = $SlideWizard->Themes->process_template( $slide_item, $slidewizard );

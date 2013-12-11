@@ -806,6 +806,7 @@ class Slides {
       $navigation_classes[] = "slidewizard-nav-{$slidewizard['options']['navigation_position']}";
 
       $html .= '<div class="slidewizard-navigation '. implode(' ', $navigation_classes) .'">';
+      $html .= apply_filters( "{$this->namespace}_render_slidewizard_navigation", "", $slides, $slidewizard );
       $html .= '</div>'; // End slidewizard-navigation
     }
 
