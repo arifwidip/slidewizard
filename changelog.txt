@@ -1,5 +1,15 @@
 *** SlideWizard Changelog ***
 
+2013.12.11 - Version 1.1.0
+- Add: Rounded Theme, rounded slider with animated rounded thumbnails
+  Folder Added: themes/rounded
+- Add: Thumbnail Theme, slider with thumbnail navigation
+  Folder Added: themes/thumbnail
+- Add: 3 new Slider Source; Vimeo, Youtube and 500px
+  Folders Added: source/vimeo, source/youtube, source/500px
+- Fix: Slider sometimes can't be saved if user not save the slider immedietally
+  File Affected: classes/slidewizard-slides.php
+
 2013.09.24 - Version 1.0.2
 - Add: Documentation Link
   File Affected: slidewizard.php

@@ -11,7 +11,7 @@ SlideWizard helps you to create beautiful slider from various source.
 
 == Description ==
 
-Easily create a slider on your website. You can add various source for the slider, such as Instagram, Flickr, Dribbble, Twitter timeline, RSS Feed and your WordPress posts.
+Easily create a slider on your website. You can add various source for the slider, such as Instagram, Flickr, Dribbble, Twitter timeline, RSS Feed and your WordPress posts. From version 1.1.0 you can add source from 500px, YouTube and Vimeo.
 
 It is very simple to create a slider, you just have to choose the source and configure the options. You can change the slide transition, slide interval, randomize slide and many more. Slider creation page have preview section, every time you change the options, the preview will reflect the change made in the options you have choosen.
 
@@ -38,6 +38,12 @@ Automatic updates should work a charm; as always though, ensure you backup your 
 3. Insert your SlideWizard into the post.
 
 == Changelog ==
+= 1.1.0 =
+* Add: Rounded Theme, rounded slider with animated rounded thumbnails
+* Add: Thumbnail Theme, slider with thumbnail navigation
+* Add: 3 new Slider Source; Vimeo, Youtube and 500px
+* Fix: Slider sometimes can't be saved if user not save the slider immedietally
+
 = 1.0.2 =
 * Update Dashboard Style
 * Adding Twitter Stream

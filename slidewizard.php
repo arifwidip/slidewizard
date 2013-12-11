@@ -3,7 +3,7 @@
 Plugin Name: SlideWizard
 Plugin URI: http://colorlabsproject.com/plugins/slidewizard/
 Description: SlideWizard helps you to create beautiful slider from various source. 
-Version: 1.0.2
+Version: 1.1.0
 Author: ColorLabs & Company
 Author URI: http://colorlabsproject.com/
 Text Domain: slidewizard
@@ -47,7 +47,7 @@ class SlideWizard {
   public $namespace = "slidewizard";
   static $friendly_name = "SlideWizard";
   
-  static $version = '1.0.2';
+  static $version = '1.1.0';
 
   // Environment, 'development' or 'production'
   // Don't forget to change back to production
