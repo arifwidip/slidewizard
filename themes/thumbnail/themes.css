@@ -190,3 +190,20 @@
   background-image: linear-gradient(-71deg, transparent, rgba(255, 255, 255, 0.65) 50%, transparent 50%);
   background-repeat: no-repeat; 
 }
+
+/* Dribbble 
+---------------------------- */
+.themes-thumbnail .dribbble-like-count,
+.themes-thumbnail .dribbble-rebound-count,
+.themes-thumbnail .dribbble-views-count {
+  background: url("images/dribbble-sprites.png") no-repeat left 2px;
+  padding-left: 17px;
+  margin-right: 20px;
+  color: #eee;
+}
+.themes-thumbnail .dribbble-rebound-count {
+  background-position: 0 -42px;
+}
+.themes-thumbnail .dribbble-views-count {
+  background-position: 0 -21px;
+}
