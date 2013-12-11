@@ -13,14 +13,36 @@ class SlideWizardThemes_Thumbnail extends SlideWizardThemes_Helper {
     add_filter( "{$this->namespace}_render_slidewizard_navigation", array( &$this, 'render_slide_nav' ), 10, 3 );
   }
 
+  /**
+   * Hook into slidewizard options
+   * 
+   */
+  function slidewizard_slide_options( $options, $slidewizard ) {
+    if( $this->is_valid( $slidewizard['themes'] ) ) {
+      // unset( $options['Content']['show_excerpt'] );
+      unset( $options['Content']['show_readmore'] );
+      unset( $options['Navigation'] );
+    }
+
+    return $options;
+  }
+
+  /**
+   * Slide Navigation thumbnail
+   */
   function render_slide_nav( $nav, $slides, $slidewizard ) {
     foreach( $slides as $slide ) {
-      $nav .= '<a href="" class="slidewizard-nav-item">';
-        $nav .= '<div class="slidewizard-nav-item-img">';
+      $img_style = '';
+      if( $slide['thumbnail'] ) {
+        $img_style = 'background-image: url('. $slide['thumbnail'] .')';
+      }
 
-          if( $slide['thumbnail'] ) {
-            $nav .= '<img src="'. $slide['thumbnail'] .'">';
-          }
+      $nav .= '<a href="" class="slidewizard-nav-item">';
+        $nav .= '<div class="slidewizard-nav-item-img" style="'. $img_style .'">';
+
+          // if( $slide['thumbnail'] ) {
+          //   $nav .= '<img src="'. $slide['thumbnail'] .'">';
+          // }
 
         $nav .= '</div>';
       $nav .= '</a>';

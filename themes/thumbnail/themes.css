@@ -53,6 +53,10 @@
 
 /* Content
 ------------------------------------------------------------------- */
+.themes-thumbnail .slide-title,
+.themes-thumbnail .slide-title a {
+  color: #fff;
+}
 .themes-thumbnail .slide-title {
   font-size: 22px;
   line-height: 1.2;
@@ -137,6 +141,8 @@
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
+  -webkit-background-size: cover;
+  background-size: cover;
 }
 .themes-thumbnail .slidewizard-nav-item.selected .slidewizard-nav-item-img {
   border-color: #fff;
@@ -150,7 +156,11 @@
 ------------------------------------------------------------------- */
 .themes-thumbnail .slide-image {
   width: 100%;
-  height: 100%
+  height: 100%;
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-position: 0 0;
+  background-repeat: no-repeat;
 }
 .themes-thumbnail .slide-image:before {
   content: "";
