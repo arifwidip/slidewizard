@@ -1,6 +1,6 @@
 {
   "name": "Thumbnails",
-  "sources": ["posts", "feed", "dribbble"],
+  "sources": ["posts", "feed", "dribbble", "flickr"],
   "version": "1.0",
   "description": "Slider with thumbnail navigation",
   "sizes": {

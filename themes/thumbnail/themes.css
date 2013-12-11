@@ -207,3 +207,22 @@
 .themes-thumbnail .dribbble-views-count {
   background-position: 0 -21px;
 }
+
+/* Flickr
+---------------------------- */
+.themes-thumbnail.slidewizard-source-flickr .slide-author-name, 
+.themes-thumbnail.slidewizard-source-flickr .slide-date {
+  top: 0;
+  margin-left: 0;
+  margin-right: 8px;
+}
+.themes-thumbnail .smaller-image img {
+  width: 100%
+}
+.themes-thumbnail.slidewizard-source-flickr .slide-text img {
+  display: none
+}
+.themes-thumbnail .slide-text {
+  font-size: 13px;
+  line-height: 18px;
+}
