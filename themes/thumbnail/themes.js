@@ -14,14 +14,14 @@
         .find('.slide-title')
           .transition({ opacity: 0, top: -20 }, 300).end()
         .find('.slide-description-content')
-          .delay(30)
+          .delay(50)
           .transition({ opacity: 0, top: -20 }, 300);
 
       data.items.visible
         .find('.slide-title')
           .transition({ opacity: 0, top: -20 }, 300).end()
         .find('.slide-description-content')
-          .delay(30)
+          .delay(50)
           .transition({ opacity: 0, top: -20 }, 300);
     },
 
@@ -31,17 +31,7 @@
         .find('.slide-title')
           .transition({ opacity: 1, top: 0 }, 300).end()
         .find('.slide-description-content')
-          .delay(30)
-          .transition({ opacity: 1, top: 0 }, 300);
-    },
-
-    // On Slider creation
-    _onCreate_thumbnail: function( opts, data ) {
-      data.items
-        .find('.slide-title')
-          .transition({ opacity: 1, top: 0 }, 300).end()
-        .find('.slide-description-content')
-          .delay(30)
+          .delay(50)
           .transition({ opacity: 1, top: 0 }, 300);
     },
 

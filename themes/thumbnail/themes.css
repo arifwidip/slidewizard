@@ -7,13 +7,16 @@
  * 
  */
 
-.themes-thumbnail {
+.themes-thumbnail.slidewizard-wrapper {
   position: relative;
   overflow: hidden;
-  border: 2px solid #333;
+  background: #333;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
+}
+.themes-thumbnail .slidewizard {
+  margin: 2px;  
 }
 
 .themes-thumbnail img {
@@ -58,7 +61,7 @@
   padding: 7px 10px;
   position: relative;
   background: #333;
-  background: rgba(0,0,0,.7)
+  background: rgba(0,0,0,.7);
 }
 .themes-thumbnail .slide-meta {
   overflow: hidden;

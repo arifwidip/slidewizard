@@ -35,10 +35,10 @@ class SlideWizardThemes_Thumbnail extends SlideWizardThemes_Helper {
   function slidewizard_dimensions( &$width, &$height, &$outer_width, &$outer_height, &$slidewizard ) {
     global $SlideWizard;
     if( $this->is_valid( $slidewizard['themes'] ) ) {
-      // $width = $width - 20;
-      // $height = $height - 20;
-      // $outer_height = $outer_height;
-      // $outer_width = $outer_width;
+      $width = $width - 4;
+      $height = $height - 4;
+      $outer_height = $outer_height;
+      $outer_width = $outer_width;
     }
   }
 
