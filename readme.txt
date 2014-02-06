@@ -38,6 +38,9 @@ Automatic updates should work a charm; as always though, ensure you backup your 
 3. Insert your SlideWizard into the post.
 
 == Changelog ==
+= 1.1.1 =
+* Fix: Javascript not loaded when Slider called using do_shortcode
+
 = 1.1.0 =
 * Add: Rounded Theme, rounded slider with animated rounded thumbnails
 * Add: Thumbnail Theme, slider with thumbnail navigation

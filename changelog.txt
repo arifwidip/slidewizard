@@ -1,5 +1,9 @@
 *** SlideWizard Changelog ***
 
+2014.02.06 - Version 1.1.1
+- Fix: Javascript not loaded when Slider called using do_shortcode
+  File Affected: classes/slidewizard-slides.php
+
 2013.12.11 - Version 1.1.0
 - Add: Rounded Theme, rounded slider with animated rounded thumbnails
   Folder Added: themes/rounded

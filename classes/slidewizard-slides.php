@@ -841,6 +841,7 @@ class Slides {
 
       // Enqueue the SlideWizard Themes
       wp_enqueue_style( "{$this->namespace}-themes-{$themes['slug']}" );
+      wp_enqueue_script( "{$this->namespace}-themes-js-{$themes['slug']}" );
 
       // Print javascript for SlideWizard themes
       if( isset( $themes['script_url'] ) && !empty( $themes['script_url'] ) ) {
