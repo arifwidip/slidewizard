@@ -476,8 +476,51 @@ class SlideWizard {
 
     // If user role can manage options
     if( $show_menu === true ) {
-      add_menu_page( 'Manage SlideWizard', 'SlideWizard', 'publish_posts', SLIDEWIZARD_PLUGIN_NAME, array( &$this, 'page_route' ), plugin_dir_url( __FILE__ )."images/menu-icon.png", 40 );
+      $hook = add_menu_page( 'Manage SlideWizard', 'SlideWizard', 'publish_posts', SLIDEWIZARD_PLUGIN_NAME, array( &$this, 'page_route' ), plugin_dir_url( __FILE__ )."images/menu-icon.png", 40 );
+
+      // Hook into admin color scheme
+      add_action('admin_print_scripts-' . $hook, array( $this, 'add_admin_color_schemes' ));
     }
+  }
+
+
+  /**
+   * Admin Color Schemes
+   */
+  public function add_admin_color_schemes() {
+    global $_wp_admin_css_colors; 
+    $current_scheme = get_user_option('admin_color');
+
+    $text_color = $_wp_admin_css_colors[ $current_scheme ]->icon_colors['base'];
+    $text_current = $_wp_admin_css_colors[ $current_scheme ]->icon_colors['current'];
+
+    if('light'==$current_scheme){
+      $base_color = $_wp_admin_css_colors[ $current_scheme ]->colors[0];
+      $highlight_color = $_wp_admin_css_colors[ $current_scheme ]->colors[1];
+      $text_color = '#333';
+      $text_current = '#FFF';
+    }elseif('blue'==$current_scheme){
+      $base_color = $_wp_admin_css_colors[ $current_scheme ]->colors[2];
+      $highlight_color = $_wp_admin_css_colors[ $current_scheme ]->colors[0];
+    }elseif('midnight'==$current_scheme){
+      $base_color = $_wp_admin_css_colors[ $current_scheme ]->colors[1];
+      $highlight_color = $_wp_admin_css_colors[ $current_scheme ]->colors[3];
+    }else{
+      $base_color = $_wp_admin_css_colors[ $current_scheme ]->colors[1];
+      $highlight_color = $_wp_admin_css_colors[ $current_scheme ]->colors[2];
+    }
+    if('fresh'==$current_scheme){
+      $base_color = '#0099CC';
+      $text_color = '#FFFFFF';
+    }
+
+    echo '<style>';
+    echo '.slidewizard-topblock, .slidewizard-form-header, .slidewizard-footnote, .slidewizard-modal .modal-header { background-color: '. $base_color .' }';
+    echo '.slidewizard-topblock h1 a, .slidewizard-modal .modal-header { color: '. $text_color .'; }';
+    echo '.source-icon, .slidewizard-source-config .popover-title { background-color: '. $highlight_color .' }';
+    echo '.slidewizard-source-config.popover .arrow { border-bottom-color: '. $highlight_color .' }';
+    echo '.source-icon .configure-source .arrow { border-top-color: '. $text_color .' }';
+    echo '</style>';
   }
 
 
