@@ -588,7 +588,7 @@ function slidewizard_get_tweets_bearer_token( $consumer_key, $consumer_secret ){
 					echo '</div>';
 				}
 
-				echo    '<div class="tweet-content">'.$text.' <span class="time"><a target="_blank" title="" href="'.$url.'"> about '.$time.' ago</a></span></div>';
+				echo    '<div class="tweet-content">'.$text.'</div><span class="time"><a target="_blank" title="" href="'.$url.'"> about '.$time.' ago</a></span>';
 				
 				if( 'search' == $query_type ) {
 					if( $show_follow == 'true' ) {

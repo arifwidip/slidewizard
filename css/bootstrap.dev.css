@@ -342,7 +342,7 @@ h4 small {
 
 ul, ol {
   padding: 0;
-  margin: 0 0 10px 25px;
+  /*margin: 0 0 10px 25px;*/
 }
 
 ul ul,
@@ -3560,9 +3560,6 @@ input[type="submit"].btn.btn-mini {
   border: 1px solid rgba(0, 0, 0, 0.3);
   *border: 1px solid #999;
   /* IE6-7 */
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  border-radius: 6px;
   -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);

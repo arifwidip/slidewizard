@@ -1,6 +1,5 @@
 .slidewizard-container {
   margin-top: 30px;
-  padding-right: 20px;
 }
 .slidewizard-container a {
   text-decoration: none
@@ -10,30 +9,26 @@
 }
 
 @font-face {
-    font-family: 'bebas_neueregular';
-    src: url('../font/BebasNeue-webfont.eot');
-    src: url('../font/BebasNeue-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../font/BebasNeue-webfont.woff') format('woff'),
-         url('../font/BebasNeue-webfont.ttf') format('truetype'),
-         url('../font/BebasNeue-webfont.svg#bebas_neueregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
+  font-family: 'bebas_neueregular';
+  src: url('../font/BebasNeue-webfont.eot');
+  src: url('../font/BebasNeue-webfont.eot?#iefix') format('embedded-opentype'),
+       url('../font/BebasNeue-webfont.woff') format('woff'),
+       url('../font/BebasNeue-webfont.ttf') format('truetype'),
+       url('../font/BebasNeue-webfont.svg#bebas_neueregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 
 /* SlideWizard Top Block
 =================================================================== */
-.slidewizard-topblock,
 .slidewizard-form-header {
-  background: #222;
-  border: 1px solid #000;
-  border-bottom: 0;
-  -webkit-border-radius: 5px 5px 0 0;
-  -moz-border-radius: 5px 5px 0 0;
-  border-radius: 5px 5px 0 0;
-  -webkit-box-shadow: 0 1px rgba(255, 255, 255, .2) inset;
-  -moz-box-shadow: 0 1px rgba(255, 255, 255, .2) inset;
-  box-shadow: 0 1px rgba(255, 255, 255, .2) inset;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.5);
+}
+.slidewizard-topblock,
+.slidewizard-form-header,
+.slidewizard-footnote {
+  background: #09c;
+  -webkit-font-smoothing: antialiased;
 }
 .slidewizard-topblock {
   padding: 10px 20px;
@@ -87,8 +82,11 @@
 .slidewizard-main {
   border: 1px solid #ccc;
   border-top-width: 0px;
-  background: #f9f9f9;
+  background: #fff;
   padding: 20px 20px 10px;
+}
+.slidewizard-form-body {
+  background: #fff;
 }
 .slidewizard-form-body iframe {
   margin: 20px auto;
@@ -96,10 +94,11 @@
 }
 
 .slidewizard-footnote {
-  background: #EBEBEB;
-  padding: 0 20px;
-  border: 1px solid #ccc;
-  border-top: 0;
+  padding: 17px 20px;
+}
+.slidewizard-footnote,
+.slidewizard-footnote a {
+  color: #fff
 }
 .slidewizard-footnote ul {
   list-style: none;
@@ -122,6 +121,8 @@
 .slidewizard-footnote a {
   display: block;
   padding: 8px 0;
+  text-transform: uppercase;
+  font-size: 11px;
 }
 
 
@@ -146,14 +147,8 @@
   line-height: 1;
   font-weight: bold;
   text-transform: uppercase;
-  background-color: #f9f9f9;
-  background-image: -moz-linear-gradient(top, white, #f2f2f2);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#f2f2f2));
-  background-image: -webkit-linear-gradient(top, white, #f2f2f2);
-  background-image: -o-linear-gradient(top, white, #f2f2f2);
-  background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFFFF', endColorstr='#FFF2F2F2', GradientType=0);
+  background: #efefef;
+  border-bottom: 0;
 }
 .accordion-heading .accordion-toggle,
 .accordion-inner {
@@ -397,8 +392,7 @@ background-position: 0 15px;
 .source-icon {
   padding: 5px 20px 5px 5px;
   position: relative;
-  background: #1f1f1f;
-  border: 1px solid #111;
+  background: #0074a2;
   -webkit-border-radius: 3px;
      -moz-border-radius: 3px;
           border-radius: 3px;
@@ -413,15 +407,18 @@ background-position: 0 15px;
   bottom: 0;
   text-indent: -9999px;
   width: 12px;
-  background: #111;
+  background: rgba(0,0,0,.1);
 }
 .source-icon .configure-source .arrow {
   position: absolute;
   border: 4px solid transparent;
-  border-top-color: #999;
+  border-top-color: #fff;
   left: 2px;
   top: 50%;
+  width: 0;
+  height: 0;
   margin-top: -3px;
+  margin-left: 0;
 }
 
 .source-icon .slidewizard-source-config {
@@ -435,8 +432,11 @@ background-position: 0 15px;
 .slidewizard-source-config .popover-title {
   color: #fff;
   font-weight: bold;
-  text-shadow: 0 1px #000;
-  background: #222;
+  background: #0074a2;
+  text-shadow: 0 1px rgba(0,0,0,.1)
+}
+.slidewizard-source-config.popover .arrow {
+  border-bottom-color: #0074a2;
 }
 .slidewizard-source-config.popover .arrow:after {
   border-bottom-color: #222;
@@ -467,11 +467,13 @@ background-position: 0 15px;
 =================================================================== */
 .slidewizard-modal .modal-header {
   padding: 15px;
-  background: #f5f5f5;
-  border-top: 1px solid #ddd;
-  -webkit-border-radius: 6px 6px 0 0;
-  -moz-border-radius: 6px 6px 0 0;
-  border-radius: 6px 6px 0 0;
+  background: #09c;
+  color: #fff;
+  border: 0;
+  -webkit-font-smoothing: antialiased;
+}
+.slidewizard-modal .modal-header h3 {
+  font-size: 21px;
 }
 
 
@@ -507,7 +509,7 @@ background-position: 0 15px;
   margin: 0;
   border: 1px solid #ddd;
   border-top: 0;
-  background: #fff;
+  background: #fafafa
 }
 .slidewizard-item:first-child {
   border-top: 1px solid #ddd;
@@ -597,29 +599,34 @@ background-position: 0 15px;
 	
 
 .slidewizard-footnote li:last-child:after {
-    display: none;
+  display: none;
 }
 .slidewizard-footer {
-    margin-top: 20px;
-    text-align: right;
+  margin-top: 20px;
+  text-align: right;
 }
-.slidewizard-twitter-stream{
-		margin-bottom: 20px;
+.slidewizard-twitter-stream {
+	margin-bottom: 20px;
+}
+.slidewizard-twitter-stream.updated {
+  color: #666;
+  padding: 10px 12px 5px;
 }
 .slidewizard-twitter-stream .stream-label {
-    background: url("../images/twitter.png") no-repeat scroll left center transparent;
-    float: left;
-    font-weight: bold;
-    margin-right: 10px;
-    padding-left: 30px;
-    text-transform: uppercase;
-		line-height: 20px;
+  background: url("../images/twitter.png") no-repeat scroll left center transparent;
+  float: left;
+  font-weight: bold;
+  margin-right: 10px;
+  padding-left: 30px;
+  text-transform: uppercase;
+	line-height: 20px;
 }
 .slidewizard-twitter-stream a {
 	text-decoration: none;
 }
-.slidewizard-twitter-stream ul {
+.slidewizard-twitter-stream .tweets {
 	margin: 0;
+  overflow: hidden;
 }
 .slidewizard-twitter-stream li {
 	display: none;
@@ -627,10 +634,15 @@ background-position: 0 15px;
 .slidewizard-twitter-stream li:first-child {
 	display: block
 }	
-
 .slidewizard-twitter-stream li .time a {
-    color: #BBBBBB;
-    font-size: 10px;
-    font-style: italic;
-    margin-left: 3px;
+  font-size:11px;
+  color:#bbb;
+  font-style:italic;
+}
+.slidewizard-twitter-stream .tweet-content {
+  float: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
 }
