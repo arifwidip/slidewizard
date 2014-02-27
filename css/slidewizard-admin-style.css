@@ -419,6 +419,7 @@ background-position: 0 15px;
   width:510px; 
   margin-top: 58px;
   padding: 0;
+  text-shadow: none
 }
 .source-icon .slidewizard-source-config .arrow {
   left: 50px;

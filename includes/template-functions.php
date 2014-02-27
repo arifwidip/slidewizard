@@ -242,6 +242,9 @@ if( !function_exists( 'slidewizard_render_input_single' ) ) {
       // --------------------------
       case "text":
         $input_type = ( isset( $option['hide_field'] ) ) ? 'password' : 'text';
+        if( $input_type == 'password' ) {
+          $stored_value = ( !empty($stored_options[$id]) ) ? $stored_options[$id] : $option['default'];
+        }
         $output .= '<input value="'. $stored_value .'" name="'. $option_name .'" type="'. $input_type .'" '. $attr .'>';
         break;
 
