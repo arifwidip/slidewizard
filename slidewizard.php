@@ -3,7 +3,7 @@
 Plugin Name: SlideWizard
 Plugin URI: http://colorlabsproject.com/plugins/slidewizard/
 Description: SlideWizard helps you to create beautiful slider from various source. 
-Version: 1.1.1
+Version: 1.1.3
 Author: ColorLabs & Company
 Author URI: http://colorlabsproject.com/
 Text Domain: slidewizard
@@ -47,7 +47,7 @@ class SlideWizard {
   public $namespace = "slidewizard";
   static $friendly_name = "SlideWizard";
   
-  static $version = '1.1.1';
+  static $version = '1.1.3';
 
   // Environment, 'development' or 'production'
   // Don't forget to change back to production
@@ -515,11 +515,19 @@ class SlideWizard {
     }
 
     echo '<style>';
-    echo '.slidewizard-topblock, .slidewizard-form-header, .slidewizard-footnote, .slidewizard-modal .modal-header { background-color: '. $base_color .' }';
+    echo '.slidewizard-topblock, .slidewizard-form-header, .slidewizard-footnote, .slidewizard-modal .modal-header,.save-buttons { background-color: '. $base_color .' }';
     echo '.slidewizard-topblock h1 a, .slidewizard-modal .modal-header { color: '. $text_color .'; }';
     echo '.source-icon, .slidewizard-source-config .popover-title { background-color: '. $highlight_color .' }';
     echo '.slidewizard-source-config.popover .arrow { border-bottom-color: '. $highlight_color .' }';
-    echo '.source-icon .configure-source .arrow { border-top-color: '. $text_color .' }';
+    echo '.ui-tooltip, .arrow::after{ border-top-color: '. $text_color .' }';
+		if('fresh'==$current_scheme){
+			echo '.wp-core-ui .button-primary {background-color: #FFB101;border-color: #DA903B;box-shadow:0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 0 rgba(255, 255, 255, 0.6) inset}';
+			echo '.wp-core-ui .button-primary:hover{background-color: #FFCA00;border-color: #DA903B;box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 0 rgba(255, 255, 255, 0.6) inset;}';
+		}elseif('light'==$current_scheme){
+			echo '.slidewizard-topblock h1 a, .slidewizard-modal .modal-header, .slidewizard-topblock .slidewizard-version, .slidewizard-footnote a, .slidewizard-footnote{ color:#333; }';
+		}
+		
+		
     echo '</style>';
   }
 

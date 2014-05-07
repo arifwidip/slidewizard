@@ -32,5 +32,5 @@
   <?php endforeach; ?>
 </ul><!-- .slidewizard-list -->
 <?php else : ?>
-
+<h3 class="slidewizzard-default-text"> <?php _e('There is no slide here, you should create one, please click the "Create Slide" button', $this->namespace);?></h3>
 <?php endif; ?>

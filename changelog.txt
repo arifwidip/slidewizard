@@ -1,5 +1,12 @@
 *** SlideWizard Changelog ***
 
+2014.04.14 - Version 1.1.3
+- Update New Plugin Panel
+
+2014.04.14 - Version 1.1.2
+- Add: 3 new Slider Source; Vimeo, Youtube and 500px
+  Folders Added: source/vimeo, source/youtube, source/500px
+
 2014.02.06 - Version 1.1.1
 - Fix: Javascript not loaded when Slider called using do_shortcode
   File Affected: classes/slidewizard-slides.php

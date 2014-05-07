@@ -35,7 +35,7 @@
   		</h1>
   		<sup class="slidewizard-version"><?php echo self::$version; ?></sup>
       </div>
-      <a href="<?php echo slidewizard_action('&action=create');?>" class="btn btn-primary" id="slidewizard-create-button">Create Slide</a>
+      <a href="<?php echo slidewizard_action('&action=create');?>" class="button-primary" id="slidewizard-create-button">Create Slide</a>
       <div class="clear"></div>
     </div><!-- .slidewizard-topblock -->
     

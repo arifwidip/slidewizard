@@ -21,7 +21,7 @@
         </div>
         
         <div class="popover-footer clearfix">
-          <a href="#apply" class="slidewizard-ajax-update btn btn-primary apply"><?php _e( "Apply", $namespace ); ?></a>
+          <a href="#apply" class="slidewizard-ajax-update button-primary apply"><?php _e( "Apply", $namespace ); ?></a>
         </div>
       </div>
       

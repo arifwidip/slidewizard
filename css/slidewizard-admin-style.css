@@ -61,12 +61,14 @@
   right: 0px;
   font-size: 11px;
 }
-.slidewizard-topblock .btn{
-  float: right;
-  margin: 15px 0 5px;
+.slidewizard-topblock .button-primary {
+	float: right;
+	margin: 15px 0 5px;
 }
-
-
+.slidewizzard-default-text{
+	color: #AAA;
+	text-align: center;
+}
 /* SlideWizard Navbar
 =================================================================== */
 .slidewizard-container .navbar {
@@ -437,6 +439,7 @@ background-position: 0 15px;
   border-bottom-color: #222;
 }
 .slidewizard-source-config .popover-footer {
+	text-align:right;
   padding: 9px 12px;
   background: #f5f5f5;
   -webkit-border-radius: 0 0 5px 5px;
@@ -640,4 +643,50 @@ background-position: 0 15px;
   text-overflow: ellipsis;
   overflow: hidden;
   width: 100%;
+}
+@media (max-width: 977px){
+	.slidewizard-twitter-stream .stream-label{
+		float:none;
+	}
+	.slidewizard-twitter-stream li{
+		padding-left:0;
+	}
+	.slidewizard-twitter-stream ul {
+		margin: 0;
+		margin-left: 32px;
+		margin-top: 10px;
+	}
+	.slidewizard-footnote li{
+		float:none;
+		text-align:center;
+	}
+	.slidewizard-footnote li:after{
+		display:none;
+	}
+	.sources-list li{
+		width:100%;
+		float:none;
+	}
+	.sources-list .even{
+		margin-left:0;
+	}
+	.modal.slidewizard-modal.fade.in{
+		width: 90%;
+		margin: 0;
+		left: 15px;
+		top: 30%;
+	}
+	.source-icon .slidewizard-source-config {
+		width: 286px;
+	}
+	.slidewizard-footer{
+		text-align:center
+	}
+	.slidewizard-twitter-stream .tweet-content{
+		white-space: normal;
+		text-overflow: initial;
+	}
+	.slidewizard-twitter-stream .tweets{
+		margin-top:10px
+	}
 }

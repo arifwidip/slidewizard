@@ -38,13 +38,19 @@ Automatic updates should work a charm; as always though, ensure you backup your 
 3. Insert your SlideWizard into the post.
 
 == Changelog ==
+
+= 1.1.3 =
+* Update New Plugin Panel
+
+= 1.1.2 =
+* Add: 3 new Slider Source; Vimeo, Youtube and 500px
+
 = 1.1.1 =
 * Fix: Javascript not loaded when Slider called using do_shortcode
 
 = 1.1.0 =
 * Add: Rounded Theme, rounded slider with animated rounded thumbnails
 * Add: Thumbnail Theme, slider with thumbnail navigation
-* Add: 3 new Slider Source; Vimeo, Youtube and 500px
 * Fix: Slider sometimes can't be saved if user not save the slider immedietally
 
 = 1.0.2 =

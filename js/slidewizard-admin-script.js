@@ -155,6 +155,7 @@ window.SlideWizardAdmin = {
         success: function() {
           $el.parents('.slidewizard-item').slideUp(function(){
             $(this).remove();
+						window.location.href =window.location.href;
           });
         }
       });

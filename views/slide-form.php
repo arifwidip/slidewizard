@@ -54,7 +54,7 @@
           </div>
           
           <div class="save-buttons wells">
-            <input type="submit" class="btn btn-primary" value="<?php _e('Save Slide', 'slidewizard');?>">
+            <input type="submit" class="button-primary" value="<?php _e('Save Slide', 'slidewizard');?>">
           </div>
           
         </div>
